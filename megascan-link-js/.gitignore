@@ -1,0 +1,6 @@
+#ignore vscode folder
+.vscode/
+
+#ignore utility files
+copycommits.bat
+copyToRepo.py
