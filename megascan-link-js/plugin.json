@@ -1,0 +1,14 @@
+{
+	"description": "This is a sample plugin",
+	"url": "https://www.substance3d.com",
+	"version": "0.1.0",
+	"license": "<a href=\"https://opensource.org/licenses/MIT\">MIT</a>",
+	"third_parties": [
+		{
+			"name": "Foo",
+			"description": "this is the description of Foo",
+			"homepage_url": "https://www.substance3d.com",
+			"license_url": "https://opensource.org/licenses/MIT"
+		}
+	]
+}
