@@ -1,0 +1,5 @@
+# ignore copy utility
+copytopainter.py
+
+#ingore vcode folder
+.vscode/
