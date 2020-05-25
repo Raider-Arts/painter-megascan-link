@@ -15,7 +15,6 @@ PainterPlugin {
 		// This can be used to execute script code at startup,
 		// once the full QML environment has been established.
 		alg.log.info("Component.onCompleted")
-		alg.ui.addWidgetToPluginToolBar("Tool.qml")
 		alg.log.info(alg.plugin_root_directory)
 	}
 
@@ -30,18 +29,15 @@ PainterPlugin {
 			// When we receive a message from a connected client, display it, then send back a message.
 			webSocket.onTextMessageReceived.connect(function(message) {
 				var date = (new Date()).toLocaleTimeString();
-
-				alg.log.info("Message received at %1: %2".arg(date).arg(message));
-
-				// webSocket.sendTextMessage(( // Send HTML content to be displayed in the browser
-				// "<h1>Hello!</h3>" +
-				// "<p>Your are connected to Substance Painter via a WebSocket</p>" +
-				// "<ul>" +
-				// "  <li>Time: %1</li>" +
-				// "  <li>Substance Painter version: %2</li>" +
-				// "  <li>Scripting API version: %3</li>" +
-				// "</ul>"
-				// ).arg(date).arg(alg.version.painter).arg(alg.version.api));
+				// alg.log.info("Message received at %1: %2".arg(date).arg(message));
+				var data = JSON.parse(message)
+				alg.log.info(data[0].type)
+				data.forEach(asset => {
+					asset.components.forEach(bitmap => {
+						alg.log.info(alg.resources.importProjectResource(bitmap.path,["texture"],"megacan/"+ asset.name))
+					});
+				});
+				
 			});
 		}
 	}
