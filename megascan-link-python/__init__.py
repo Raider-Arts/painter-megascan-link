@@ -61,7 +61,7 @@ def openSettingsDialog():
 	"""Opens the Setings dialog for the user to change the socket port number and other import settings
 	"""
 	mainWindow = sbsui.get_main_window()
-	dialog = dialogs.SettingsDialog(mainWindow)
+	dialog = dialogs.SettingsDialog(Data.socket,mainWindow)
 	dialog.show()
 
 def createToolBar():

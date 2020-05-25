@@ -109,7 +109,7 @@ class SocketThread(QtCore.QThread):
 					# =================================================
 					# Init the websocket and send the data over to JS
 					websocket = websocket_link.WebsocketLink()
-					websocket.sendDataToJs(data)
+					websocket.sendDataToJs(jsonObj)
 			finally:
 				if hasattr(self, '_connection'):
 					self._connection.close()

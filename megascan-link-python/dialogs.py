@@ -10,7 +10,7 @@ import PySide2
 from PySide2 import QtWidgets, QtGui
 
 from .ui import settings_dialog, icon
-from . import config, log
+from . import config, log, sockets
 
 importlib.reload(settings_dialog)
 
@@ -18,9 +18,10 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 	"""Dialog displayed to the user for editing the plugin settings
 	"""    
 
-	def __init__(self, parent=None):
+	def __init__(self, socket: sockets.SocketThread, parent=None):
 		super().__init__(parent=parent)
 		self.setupUi(self)
+		self._socketRef = socket
 		self.needRestart = False
 		self.helpIcon.setPixmap(icon.getIconAsQPixmap("help_icon.png",24))
 		self.portNumber.setText(config.ConfigSettings.getConfigSetting("Connection", "port"))
@@ -40,12 +41,12 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		log.LoggerLink.Log("Changed Port number or Timeout socket need to restart", log.logging.DEBUG)
 
 	def _saveSettings(self):
-		"""Saved the changed settings to file then inform the socket thread if it need to restart himself
+		"""Save the changed settings to file then inform the socket thread if it need to restart himself
 		"""
 		config.ConfigSettings.updateConfigSetting("Connection", "port", self.portNumber.text(), False)
 		config.ConfigSettings.updateConfigSetting("Connection", "timeout", self.timeoutNumber.text(), False)
 		config.ConfigSettings.flush()
 		if self.needRestart:
-			pass
+			self._socketRef.restart()
 		self.close()
 
