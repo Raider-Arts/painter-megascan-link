@@ -4,13 +4,14 @@ import platform
 import subprocess
 import sys
 from pathlib import Path
+from websocket import create_connection
 
 import PySide2
 from PySide2 import QtCore, QtGui, QtWidgets
 
 import substance_painter.ui as sbsui
 
-from . import dialogs, log, config
+from . import dialogs, log, config, sockets, websocket_link
 from . import utilities as util
 from .ui import icon
 
@@ -19,6 +20,8 @@ importlib.reload(dialogs)
 importlib.reload(log)
 importlib.reload(util)
 importlib.reload(config)
+importlib.reload(sockets)
+importlib.reload(websocket_link)
 
 def checkDependencies() -> bool:
 	"""Check if dependencies are installed if not tries to install them (it is platform dependent??)
@@ -52,6 +55,7 @@ class Data(object):
 	"""Dataclass used to store references to items so they dont get garbage collected
 	"""    
 	toolbar = None
+	socket = None
 
 def openSettingsDialog():
 	"""Opens the Setings dialog for the user to change the socket port number and other import settings
@@ -74,6 +78,10 @@ def start_plugin():
 	"""**Entry point** of the plugin
 	"""
 	# =================================================
+	# Get reference to qt window of substance painter
+	mainWindow = sbsui.get_main_window()
+
+	# =================================================
 	# Init the logger
 	log.LoggerLink.setLoggerName("megascanlink")
 
@@ -87,11 +95,18 @@ def start_plugin():
 
 	if checkDependencies():
 		createToolBar()
+		# =================================================
+		# start the sockets
+		Data.socket = sockets.SocketThread(mainWindow)
+		# sender = websocket_link.WebsocketLink(mainWindow)
+		# Data.socket.onDataReceived.connect(sender.sendDataToJs)
+		Data.socket.start()
 
 
 def close_plugin():
 	"""**exit point** of the plugin
-	"""    
+	"""
+	Data.socket.close()
 	mainWindow = sbsui.get_main_window()
 	if Data.toolbar:
 		sbsui.delete_ui_element(Data.toolbar)
