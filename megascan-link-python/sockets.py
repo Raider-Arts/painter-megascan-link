@@ -106,6 +106,8 @@ class SocketThread(QtCore.QThread):
 				if data:
 					jsonObj = json.loads(data)
 					self.onDataReceived.emit(jsonObj)
+					# =================================================
+					# Init the websocket and send the data over to JS
 					websocket = websocket_link.WebsocketLink()
 					websocket.sendDataToJs(data)
 			finally:

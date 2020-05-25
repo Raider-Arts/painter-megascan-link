@@ -98,8 +98,6 @@ def start_plugin():
 		# =================================================
 		# start the sockets
 		Data.socket = sockets.SocketThread(mainWindow)
-		# sender = websocket_link.WebsocketLink(mainWindow)
-		# Data.socket.onDataReceived.connect(sender.sendDataToJs)
 		Data.socket.start()
 
 
