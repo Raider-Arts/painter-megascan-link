@@ -19,32 +19,32 @@ PainterPlugin {
 		alg.log.info(alg.plugin_root_directory)
 	}
 
-	// WebSocketServer {
-	// 	listen: true
-	// 	port: 1212
+	WebSocketServer {
+		listen: true
+		port: 1212
 
-	// 	onClientConnected: {
-	// 		alg.log.info("New client connected");
-	// 		// The clientConnected signal is called with a webSocket object in parameter that represents
-	// 		// the newly created connection between the server and the client.
-	// 		// When we receive a message from a connected client, display it, then send back a message.
-	// 		webSocket.onTextMessageReceived.connect(function(message) {
-	// 			var date = (new Date()).toLocaleTimeString();
+		onClientConnected: {
+			alg.log.info("New client connected");
+			// The clientConnected signal is called with a webSocket object in parameter that represents
+			// the newly created connection between the server and the client.
+			// When we receive a message from a connected client, display it, then send back a message.
+			webSocket.onTextMessageReceived.connect(function(message) {
+				var date = (new Date()).toLocaleTimeString();
 
-	// 			alg.log.info("Message received at %1: %2".arg(date).arg(message));
+				alg.log.info("Message received at %1: %2".arg(date).arg(message));
 
-	// 			// webSocket.sendTextMessage(( // Send HTML content to be displayed in the browser
-	// 			// "<h1>Hello!</h3>" +
-	// 			// "<p>Your are connected to Substance Painter via a WebSocket</p>" +
-	// 			// "<ul>" +
-	// 			// "  <li>Time: %1</li>" +
-	// 			// "  <li>Substance Painter version: %2</li>" +
-	// 			// "  <li>Scripting API version: %3</li>" +
-	// 			// "</ul>"
-	// 			// ).arg(date).arg(alg.version.painter).arg(alg.version.api));
-	// 		});
-	// 	}
-	// }
+				// webSocket.sendTextMessage(( // Send HTML content to be displayed in the browser
+				// "<h1>Hello!</h3>" +
+				// "<p>Your are connected to Substance Painter via a WebSocket</p>" +
+				// "<ul>" +
+				// "  <li>Time: %1</li>" +
+				// "  <li>Substance Painter version: %2</li>" +
+				// "  <li>Scripting API version: %3</li>" +
+				// "</ul>"
+				// ).arg(date).arg(alg.version.painter).arg(alg.version.api));
+			});
+		}
+	}
 
 	onTick: {
 		// Do something at each tick, depending on tickIntervalMS value
