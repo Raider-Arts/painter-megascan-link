@@ -7,12 +7,55 @@ import AlgWidgets 2.0
 import QtQuick.Layouts 1.12
 
 PainterPlugin {
+	id: megascanlink
 
 	Component.onCompleted: {
 		alg.log.info("Megascan-link-JS loaded")
 	}
 
+	function importResources(data) {
+		alg.log.info("Importing Megascan Assets in the current project")
+		var urls = []
+		data.forEach(asset => {
+			asset.components.forEach(bitmap => {
+				var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"Megascan/"+ asset.name))
+				alg.log.info(urls[lenght-1])
+			})
+		})
+		alg.resources.selectResources(urls)
+	}
+
+	function importMeshResources(data){
+		alg.log.info("Importing Megascan Assets in the current project")
+
+	}
+
+	function createProjectWithResources(data) {
+		alg.log.info("Creating project with resources")
+		var urls = []
+		data.forEach(asset => {
+			asset.components.forEach(bitmap => {
+				var lenght = urls.push(alg.fileIO.localFileToUrl(bitmap.path))
+				alg.log.info(urls[lenght-1])
+			})
+		})
+		alg.project.create(alg.fileIO.localFileToUrl(data[0].meshList[0].path), urls)
+	}
+
+	function checkForMeshAssets(data){
+		var hasMesh = false
+		alg.log.info(data[0].type)
+		data.forEach(asset => {
+			if(asset.type == "3d" || asset.type == "3dplant"){
+				hasMesh = true
+			}
+		})
+		return hasMesh
+	}
+
 	WebSocketServer {
+		// This is the connection from which the python plugin forward the data retriver over socket from bridge to this
+		// plugin, here we can use the Substance Painter JS API to import the assets 
 		listen: true
 		port: 1212
 
@@ -20,28 +63,26 @@ PainterPlugin {
 			alg.log.info("Megascan-link-python plugin connection established");
 			// The clientConnected signal is called with a webSocket object in parameter that represents
 			// the newly created connection between the server and the client.
-			// When we receive a message from a connected client, display it, then send back a message.
 			webSocket.onTextMessageReceived.connect(function(message) {
 				alg.log.info("receiving data from Megascan-link-python plugin")
 				// var date = (new Date()).toLocaleTimeString();
 				// alg.log.info("Message received at %1: %2".arg(date).arg(message));
 				var data = JSON.parse(message)
-				var urls = []
-				alg.log.info(data[0].type)
-				data.forEach(asset => {
-					asset.components.forEach(bitmap => {
-						var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"megacan/"+ asset.name))
-						alg.log.info(urls[lenght-1])
-					})
-				})
-				alg.resources.selectResources(urls)
+				if(checkForMeshAssets(data) && alg.project.isOpen()){
+					createProjectDialog.open()
+					createProjectDialog.importData = data
+				}else if(alg.project.isOpen()){
+					importProjectResource(data)
+				}else{
+					createProjectWithResources(data)
+				}
 			});
 		}
 	}
 
 	AlgDialog {
 		id: createProjectDialog
-		title: "Choose a date"
+		title: "Mesh Assets found in the import data"
 		visible: false
 		width: 400
 		height: 150
@@ -49,6 +90,9 @@ PainterPlugin {
 		maximumWidth: width
 		minimumHeight: height
 		minimumWidth: width
+
+		property var importData: {}
+
 		Rectangle {
 			anchors.fill: parent
 			color: createProjectDialog.color
@@ -57,7 +101,7 @@ PainterPlugin {
 				anchors.margins: 10
 				AlgLabel  {
 					Layout.fillWidth: true
-					text: "The Megascan assets imported contain a Mesh Asset do you want to create a new project using this asset or import them in the current project? (Note that the mesh file will not be imported)"
+					text: "The Megascan assets imported contain one or more Mesh Assets do you want to create a new project using one of this 3D Asset or just import the textures in the current project? (Note: mesh files will not be imported)"
 					wrapMode: Text.Wrap
 				}
 				Item {
@@ -71,14 +115,16 @@ PainterPlugin {
 						id: importBtn
 						text: "Import"
 						onClicked: {
-							alg.log.warn("clicked")
+							megascanlink.importResources(createProjectDialog.importData)
+							createProjectDialog.close()
 						}
 					}
 					AlgButton {
 						id: newPrjBtn
 						text: "New Project"
 						onClicked: {
-							alg.log.warn("clicked")
+							megascanlink.createProjectWithResources(createProjectDialog.importData)
+							createProjectDialog.close()
 						}
 					}
 				}
