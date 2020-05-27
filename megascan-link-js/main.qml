@@ -1,7 +1,7 @@
 import QtQuick 2.7
 import Painter 1.0
 import QtWebSockets 1.0
-import QtQuick.Controls 1.2
+import QtQuick.Controls 2.0
 import QtQuick.Dialogs 1.2
 import AlgWidgets 2.0
 import QtQuick.Layouts 1.12
@@ -14,6 +14,8 @@ PainterPlugin {
 	}
 
 	function importResources(data) {
+		// Import the megascan assets textures in the project 
+		// it saves them in the Megascan/AssetName path for each asset
 		alg.log.info("Importing Megascan Assets in the current project")
 		var urls = []
 		data.forEach(asset => {
@@ -25,24 +27,20 @@ PainterPlugin {
 		alg.resources.selectResources(urls)
 	}
 
-	function importMeshResources(data){
-		alg.log.info("Importing Megascan Assets in the current project")
-
-	}
-
-	function createProjectWithResources(data) {
-		alg.log.info("Creating project with resources")
-		var urls = []
-		data.forEach(asset => {
-			asset.components.forEach(bitmap => {
-				var lenght = urls.push(alg.fileIO.localFileToUrl(bitmap.path))
-				alg.log.info(urls[lenght-1])
-			})
+	function createProjectWithResources(asset) {
+		// Create a new project using the mesh specified in the data source of the Megascan Asset
+		// Data is a single Megascan asset
+		alg.log.info("Creating project with resources, using mesh: "+ data.name)
+		var bitmaps = []
+		asset.components.forEach(bitmap => {
+			var lenght = bitmaps.push(alg.fileIO.localFileToUrl(bitmap.path))
+			alg.log.info("Loading mesh Texture: "+ bitmaps[lenght-1])
 		})
-		alg.project.create(alg.fileIO.localFileToUrl(data[0].meshList[0].path), urls)
+		alg.project.create(alg.fileIO.localFileToUrl(asset.meshList[0].path), bitmaps)
 	}
 
 	function checkForMeshAssets(data){
+		// Serch in the Megascan import data if there is a Mesh Asset
 		var hasMesh = false
 		alg.log.info(data[0].type)
 		data.forEach(asset => {
@@ -74,9 +72,101 @@ PainterPlugin {
 				}else if(alg.project.isOpen()){
 					importProjectResource(data)
 				}else{
-					createProjectWithResources(data)
+					selectMesh.open()
+					selectMesh.addAssets(data)
 				}
 			});
+		}
+	}
+
+	AlgDialog{
+		id: selectMesh
+		title: "Select Megascan Asset Mesh for New Project"
+		width: 400
+		height: 300
+		maximumHeight: height
+		maximumWidth: width
+		minimumHeight: height
+		minimumWidth: width
+		defaultButtonText: "Select"
+
+		function addAssets(assets){
+			alg.log.info(assets)
+			assetList.clear()
+			assets.forEach(asset => {
+				assetList.append({name: asset.name, image: asset.previewImage, data: asset})
+			})
+		}
+
+		property var importData: {}
+
+		ListView {
+			parent: selectMesh.contentItem
+			id: assetListView
+			anchors.fill: parent
+			anchors.margins: 10
+			model: assetList
+			header: headerList
+			delegate: assetListDelegate
+			focus: true
+			highlight: Rectangle {
+				color: 'grey'
+			}
+			ScrollBar.vertical: AlgScrollBar {}
+		}
+		
+
+		ListModel {
+			id: assetList
+		}
+
+		Component {
+			id: headerList
+			Rectangle {
+				width: parent.width
+				height: 24
+				color: selectMesh.color
+				Rectangle {
+					width: parent.width
+					height: 18
+					color: '#1f1f1f'
+					AlgLabel {
+						anchors.fill: parent
+						anchors.margins: 2
+						text: "Select a 3D Megascan Asset:"
+					}
+				}
+			}
+		}
+
+		Component {
+			id: assetListDelegate
+			Item {
+				id: rowListLayout
+				width: parent.width
+				height: 72
+				RowLayout {
+					spacing: 4
+					Image {
+						Layout.margins: 4
+						Layout.preferredWidth: 64
+						Layout.preferredHeight: 64
+						smooth: true
+						source: "file:/"+image
+					}
+					AlgLabel {
+						text: name
+						Layout.leftMargin: 4
+					}
+				}
+				MouseArea {
+					anchors.fill: parent
+					onClicked: {
+						assetListView.currentIndex = index
+						alg.log.info(index)
+					}
+				}
+			}
 		}
 	}
 
@@ -123,7 +213,8 @@ PainterPlugin {
 						id: newPrjBtn
 						text: "New Project"
 						onClicked: {
-							megascanlink.createProjectWithResources(createProjectDialog.importData)
+							selectMesh.open()
+							selectMesh.addAssets(createProjectDialog.importData)
 							createProjectDialog.close()
 						}
 					}
