@@ -27,9 +27,14 @@ PainterPlugin {
 		alg.resources.selectResources(urls)
 	}
 
-	function createProjectWithResources(asset) {
+	function createProjectWithResources(asset, imports) {
 		// Create a new project using the mesh specified in the data source of the Megascan Asset
 		// Data is a single Megascan asset
+		if(alg.project.isOpen()){
+			alg.log.info("Saving current project")
+			alg.project.save("", alg.project.SaveMode.Full)
+			alg.project.close()
+		}
 		alg.log.info("Creating project with resources, using mesh: "+ data.name)
 		var bitmaps = []
 		asset.components.forEach(bitmap => {
@@ -37,6 +42,8 @@ PainterPlugin {
 			alg.log.info("Loading mesh Texture: "+ bitmaps[lenght-1])
 		})
 		alg.project.create(alg.fileIO.localFileToUrl(asset.meshList[0].path), bitmaps)
+
+		megascanlink.importResources(imports)
 	}
 
 	function checkForMeshAssets(data){
@@ -98,7 +105,17 @@ PainterPlugin {
 			})
 		}
 
-		property var importData: {}
+		onAccepted: {
+			alg.log.info("Accepted")
+			var meshAsset = assetList.get(assetListView.currentIndex).data
+			var imports = []
+			for (let i = 0; i < assetList.count; i++) {
+				const asset = assetList.get(i).data;
+				imports.push(asset)
+			}
+			imports.splice(assetListView.currentIndex,1)
+			megascanlink.createProjectWithResources(meshAsset,imports)
+		}
 
 		ListView {
 			parent: selectMesh.contentItem
