@@ -101,7 +101,7 @@ PainterPlugin {
 			alg.log.info(assets)
 			assetList.clear()
 			assets.forEach(asset => {
-				assetList.append({name: asset.name, image: asset.previewImage, data: asset})
+				assetList.append({name: asset.name + " (id:"+ asset.id +")"  , image: asset.previewImage, data: asset})
 			})
 		}
 
@@ -168,6 +168,7 @@ PainterPlugin {
 						Layout.margins: 4
 						Layout.preferredWidth: 64
 						Layout.preferredHeight: 64
+						fillMode: Image.PreserveAspectFit
 						smooth: true
 						source: "file:/"+image
 					}
