@@ -9,7 +9,7 @@ import "utility.js" as Util
 
 
 AlgDialog {
-
+	id: selectDialog
 	title: "Select Megascan Asset Mesh for New Project"
 	width: 400
 	height: 300
@@ -23,11 +23,15 @@ AlgDialog {
 	property var currentIndex: assetListView.currentIndex
 
 	function addAssets(assets){
-		alg.log.info(assets)
 		assetList.clear()
 		assets.forEach(asset => {
 			assetList.append({name: "{} (id:{})".format(asset.name, asset.id), image: asset.previewImage, data: asset})
 		})
+	}
+
+	function openWithAssets(assets) {
+		selectDialog.addAssets(assets)
+		selectDialog.open()
 	}
 
 	ListView {

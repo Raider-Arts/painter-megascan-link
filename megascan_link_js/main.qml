@@ -26,6 +26,9 @@ PainterPlugin {
 		}
 	}
 
+	/*
+	* Prova prova
+	*/
 	function importResources(data) {
 		// Import the megascan assets textures in the project 
 		// it saves them in the Megascan/AssetName path for each asset
@@ -93,13 +96,11 @@ PainterPlugin {
 				// alg.log.info("Message received at %1: %2".arg(date).arg(message));
 				var data = JSON.parse(message)
 				if(checkForMeshAssets(data) && alg.project.isOpen()){
-					createProjectDialog.open()
-					createProjectDialog.importData = data
+					createProject.openWithData(data)
 				}else if(alg.project.isOpen()){
 					importProjectResource(data)
 				}else{
-					selectMesh.open()
-					selectMesh.addAssets(data)
+					selectMesh.openWithAssets(data)
 				}
 			});
 		}
@@ -119,59 +120,21 @@ PainterPlugin {
 			imports.splice(currentIndex,1)
 			megascanlink.createProjectWithResources(meshAsset,imports)
 		}
+
 	}
 
-	AlgDialog {
-		id: createProjectDialog
-		title: "Mesh Assets found in the import data"
-		visible: false
-		width: 400
-		height: 150
-		maximumHeight: height
-		maximumWidth: width
-		minimumHeight: height
-		minimumWidth: width
+	AlgNewProject {
+		id: createProject
 
-		property var importData: {}
+		onImportPressed: {
+			megascanlink.importResources(importData)
+			createProject.close()
+		}
 
-		Rectangle {
-			anchors.fill: parent
-			color: createProjectDialog.color
-			ColumnLayout {
-				anchors.fill: parent
-				anchors.margins: 10
-				AlgLabel  {
-					Layout.fillWidth: true
-					text: "The Megascan assets imported contain one or more Mesh Assets do you want to create a new project using one of this 3D Asset or just import the textures in the current project? (Note: mesh files will not be imported)"
-					wrapMode: Text.Wrap
-				}
-				Item {
-					Layout.fillHeight: true
-				}
-				RowLayout {
-					Item {
-						Layout.fillWidth: true
-					}
-					AlgButton {
-						id: importBtn
-						text: "Import"
-						onClicked: {
-							megascanlink.importResources(createProjectDialog.importData)
-							createProjectDialog.close()
-						}
-					}
-					AlgButton {
-						id: newPrjBtn
-						text: "New Project"
-						onClicked: {
-							selectMesh.open()
-							selectMesh.addAssets(createProjectDialog.importData)
-							createProjectDialog.close()
-						}
-					}
-				}
-			}
+		onNewProjectPressed : {
+			selectMesh.open()
+			selectMesh.addAssets(importData)
+			createProject.close()
 		}
 	}
-
 }
