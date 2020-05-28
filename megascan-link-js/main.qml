@@ -5,12 +5,25 @@ import QtQuick.Controls 2.0
 import QtQuick.Dialogs 1.2
 import AlgWidgets 2.0
 import QtQuick.Layouts 1.12
+import "utility.js" as RUtil 
 
 PainterPlugin {
 	id: megascanlink
 
+	property var projectCreated: false
+
 	Component.onCompleted: {
 		alg.log.info("Megascan-link-JS loaded")
+	}
+
+	onActiveTextureSetChanged: function(stackPath) {
+		// Called after the active texture set stack changes, 'activeTextureSetStack' contains the new active stack path.
+		// The stack path may be empty if no texture set stack is active. This can happen when closing a project.
+		if(megascanlink.projectCreated == true) {
+			megascanlink.projectCreated = false
+			alg.log.info("Changing texture set [{}] resolution to {}".format(stackPath, 4096))
+			alg.texturesets.setResolution(stackPath, [12,12])
+		}
 	}
 
 	function importResources(data) {
@@ -20,7 +33,7 @@ PainterPlugin {
 		var urls = []
 		data.forEach(asset => {
 			asset.components.forEach(bitmap => {
-				var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"Megascan/"+ asset.name))
+				var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"Megascan/{}".format(asset.name)))
 				alg.log.info(urls[lenght-1])
 			})
 		})
@@ -35,15 +48,21 @@ PainterPlugin {
 			alg.project.save("", alg.project.SaveMode.Full)
 			alg.project.close()
 		}
-		alg.log.info("Creating project with resources, using mesh: "+ data.name)
+		alg.log.info("Creating project with resources, using mesh: {}".format(data.name))
 		var bitmaps = []
 		asset.components.forEach(bitmap => {
 			var lenght = bitmaps.push(alg.fileIO.localFileToUrl(bitmap.path))
-			alg.log.info("Loading mesh Texture: "+ bitmaps[lenght-1])
+			alg.log.info("Loading mesh Texture: {}".format(bitmaps[lenght-1]))
 		})
 		alg.project.create(alg.fileIO.localFileToUrl(asset.meshList[0].path), bitmaps)
 
-		megascanlink.importResources(imports)
+		//Import additional resources if they are present
+		if(Object.keys(imports).length !== 0){
+			megascanlink.importResources(imports)
+		}
+
+		megascanlink.projectCreated = true
+
 	}
 
 	function checkForMeshAssets(data){
@@ -69,7 +88,7 @@ PainterPlugin {
 			// The clientConnected signal is called with a webSocket object in parameter that represents
 			// the newly created connection between the server and the client.
 			webSocket.onTextMessageReceived.connect(function(message) {
-				alg.log.info("receiving data from Megascan-link-python plugin")
+				alg.log.info("Receiving data from Megascan-link-python plugin")
 				// var date = (new Date()).toLocaleTimeString();
 				// alg.log.info("Message received at %1: %2".arg(date).arg(message));
 				var data = JSON.parse(message)
@@ -101,7 +120,7 @@ PainterPlugin {
 			alg.log.info(assets)
 			assetList.clear()
 			assets.forEach(asset => {
-				assetList.append({name: asset.name + " (id:"+ asset.id +")"  , image: asset.previewImage, data: asset})
+				assetList.append({name: "{} (id:{})".format(asset.name, asset.id), image: asset.previewImage, data: asset})
 			})
 		}
 
@@ -239,12 +258,6 @@ PainterPlugin {
 				}
 			}
 		}
-	}
-
-	onActiveTextureSetChanged: function(stackPath) {
-		// Called after the active texture set stack changes, 'activeTextureSetStack' contains the new active stack path.
-		// The stack path may be empty if no texture set stack is active. This can happen when closing a project.
-		alg.log.info("onActiveTextureSetChanged: " + stackPath)
 	}
 
 }
