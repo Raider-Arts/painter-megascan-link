@@ -1,6 +1,9 @@
 #ignore sphinx build dir
 doc/_build/
 
+#ignore doxygen build
+doc/doxygen/
+
 # ignore copy utility
 copytopainter.py
 
