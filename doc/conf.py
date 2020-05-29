@@ -31,7 +31,7 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_js','sphinx.ext.autodoc', "sphinx_rtd_theme", 'recommonmark','sphinx_markdown_tables'
+	'sphinx_js', 'sphinx.ext.autodoc', 'sphinx_rtd_theme', 'recommonmark', 'sphinx_markdown_tables', 'breathe'
 ]
 
 # Source files suffixes
@@ -51,6 +51,20 @@ autodoc_mock_imports = ["substance_painter","websocket"]
 
 # Base path of js files
 js_source_path = '../megascan_link_js/'
+
+# breathe projects
+breathe_projects = { "megascanlink": os.path.abspath('.') + "/doxygen/xml/" }
+
+# default breathe project
+breathe_default_project = "megascanlink"
+
+breathe_projects_source = {
+	"megascanlink" : (  os.path.abspath('..') + "/megascan_link_js/", ["AlgNewProject.qml","main.qml"] )
+	}
+
+breathe_default_members = ('members', 'undoc-members')
+
+breathe_doxygen_config_options = {'GENERATE_XML': 'YES', "EXTENSION_MAPPING" : "qml=C++", "FILTER_PATTERNS": "*.qml=doxyqml", "FILE_PATTERNS" : "*.qml"}
 
 # -- Options for HTML output -------------------------------------------------
 
