@@ -26,8 +26,10 @@ PainterPlugin {
 		}
 	}
 
-	/*
-	* Prova prova
+	/**
+	* Create a user
+	* @param type:string data User firstname
+	* @return type:None this function dont return 
 	*/
 	function importResources(data) {
 		// Import the megascan assets textures in the project 

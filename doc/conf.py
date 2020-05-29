@@ -52,15 +52,12 @@ autodoc_mock_imports = ["substance_painter","websocket"]
 # Base path of js files
 js_source_path = '../megascan_link_js/'
 
-# breathe projects
-breathe_projects = { "megascanlink": os.path.abspath('.') + "/doxygen/xml/" }
-
-# default breathe project
+# # default breathe project
 breathe_default_project = "megascanlink"
 
 breathe_projects_source = {
 	"megascanlink" : (  os.path.abspath('..') + "/megascan_link_js/", ["AlgNewProject.qml","main.qml"] )
-	}
+}
 
 breathe_default_members = ('members', 'undoc-members')
 
