@@ -27,9 +27,8 @@ PainterPlugin {
 	}
 
 	/**
-	* Create a user
-	* @param type:string data User firstname
-	* @return type:None this function dont return 
+	* Import the Megascan Assets textures in the project and put them in the Megascan/{AssetName} path for each asset
+	* @param type:Object data Quixel Bridge Json data
 	*/
 	function importResources(data) {
 		// Import the megascan assets textures in the project 
@@ -45,6 +44,11 @@ PainterPlugin {
 		alg.resources.selectResources(urls)
 	}
 
+	/**
+	* Create a new project using the defined asset as the Mesh Asset
+	* @param type:Object asset Json data of the Mesh asset (Quixel Bridge)
+	* @param type:Array imports Array of Json data of additonal resources to import in the newly created project
+	*/
 	function createProjectWithResources(asset, imports) {
 		// Create a new project using the mesh specified in the data source of the Megascan Asset
 		// Data is a single Megascan asset
@@ -65,15 +69,19 @@ PainterPlugin {
 		if(Object.keys(imports).length !== 0){
 			megascanlink.importResources(imports)
 		}
-
+		// set the global `projectCreated` variable informing other actions that we have created a new project
 		megascanlink.projectCreated = true
 
 	}
 
+	/**
+	* Check if in the Bridge json data are present some Assets that have associated a Mesh Asset
+	* @param type:Object data Quixel Bridge Json data to check
+	* @return type:boolean returns True if there is an 3D Asset, False otherwise
+	*/
 	function checkForMeshAssets(data){
 		// Serch in the Megascan import data if there is a Mesh Asset
 		var hasMesh = false
-		alg.log.info(data[0].type)
 		data.forEach(asset => {
 			if(asset.type == "3d" || asset.type == "3dplant"){
 				hasMesh = true
@@ -82,9 +90,11 @@ PainterPlugin {
 		return hasMesh
 	}
 
+	/**
+	* This is the connection from which the python plugin forward the data retrived over socket from Quixel Bridge to this
+	* plugin, here we can use the Substance Painter JS API to to do all the import actions needed
+	*/
 	WebSocketServer {
-		// This is the connection from which the python plugin forward the data retriver over socket from bridge to this
-		// plugin, here we can use the Substance Painter JS API to import the assets 
 		listen: true
 		port: 1212
 
@@ -94,13 +104,13 @@ PainterPlugin {
 			// the newly created connection between the server and the client.
 			webSocket.onTextMessageReceived.connect(function(message) {
 				alg.log.info("Receiving data from Megascan-link-python plugin")
-				// var date = (new Date()).toLocaleTimeString();
-				// alg.log.info("Message received at %1: %2".arg(date).arg(message));
-				var data = JSON.parse(message)
-				if(checkForMeshAssets(data) && alg.project.isOpen()){
+				var pythondata = JSON.parse(message)
+				var data = pythondata.data
+				var settings = pythondata.settings
+				if(checkForMeshAssets(data) && alg.project.isOpen() && Util.checkIfSettingsIsSet(settings.General.askcreateproject)){
 					createProject.openWithData(data)
 				}else if(alg.project.isOpen()){
-					importProjectResource(data)
+					megascanlink.importResources(data)
 				}else{
 					selectMesh.openWithAssets(data)
 				}
