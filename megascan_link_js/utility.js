@@ -11,8 +11,12 @@ String.prototype.format = function () {
 };
 
 /**
- * TEst
+ * Helper function that will check if a propriety of a section is set or not by confronting
+ * it with the following values ["true", "yes", "y", "ok"]
+ * @param type: string setting the setting value to check
  */
-function importResources(prova) {
-	
+function checkIfSettingsIsSet(setting) {
+	var filterstrings = ['true','yes','y','ok']
+	var regex = new RegExp(filterstrings.join("|"), "i")
+	return regex.test(setting)
 }
