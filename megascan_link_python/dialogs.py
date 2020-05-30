@@ -8,6 +8,7 @@ import importlib
 
 import PySide2
 from PySide2 import QtWidgets, QtGui
+from PySide2.QtCore import Qt
 
 from .ui import settings_dialog, icon
 from . import config, log, sockets
@@ -32,6 +33,7 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.timeoutNumber.textChanged.connect(self._setNeedRestart)
 		self.saveBtn.pressed.connect(self._saveSettings)
 		self.cancelBtn.pressed.connect(lambda: self.close())
+		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 
 	def _setNeedRestart(self, changeStr):
 		"""Internal method used to set the needRestart variable used to restart the socket if the 
@@ -45,6 +47,8 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		"""
 		config.ConfigSettings.updateConfigSetting("Connection", "port", self.portNumber.text(), False)
 		config.ConfigSettings.updateConfigSetting("Connection", "timeout", self.timeoutNumber.text(), False)
+		askcreateprojectState = False if self.askforproj.checkState() == Qt.CheckState.Checked else True
+		config.ConfigSettings.updateConfigSetting("General", "askcreateproject", askcreateprojectState, False)
 		config.ConfigSettings.flush()
 		if self.needRestart:
 			self._socketRef.restart()

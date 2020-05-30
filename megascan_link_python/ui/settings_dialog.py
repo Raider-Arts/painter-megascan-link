@@ -25,8 +25,8 @@ class Ui_Dialog(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.tabWidget = QTabWidget(Dialog)
-        self.tabWidget.setObjectName(u"tabWidget")
+        self.impTab = QTabWidget(Dialog)
+        self.impTab.setObjectName(u"impTab")
         self.connTab = QWidget()
         self.connTab.setObjectName(u"connTab")
         self.gridLayout_2 = QGridLayout(self.connTab)
@@ -72,7 +72,22 @@ class Ui_Dialog(object):
 
         self.gridLayout_2.addLayout(self.formLayout, 0, 0, 1, 1)
 
-        self.tabWidget.addTab(self.connTab, "")
+        self.impTab.addTab(self.connTab, "")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.verticalLayout_2 = QVBoxLayout(self.tab)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.formLayout_2 = QFormLayout()
+        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.askforproj = QCheckBox(self.tab)
+        self.askforproj.setObjectName(u"askforproj")
+
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.askforproj)
+
+
+        self.verticalLayout_2.addLayout(self.formLayout_2)
+
+        self.impTab.addTab(self.tab, "")
         self.About = QWidget()
         self.About.setObjectName(u"About")
         self.gridLayout_6 = QGridLayout(self.About)
@@ -127,9 +142,9 @@ class Ui_Dialog(object):
 
         self.gridLayout_6.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
 
-        self.tabWidget.addTab(self.About, "")
+        self.impTab.addTab(self.About, "")
 
-        self.verticalLayout.addWidget(self.tabWidget)
+        self.verticalLayout.addWidget(self.impTab)
 
         self.line = QFrame(Dialog)
         self.line.setObjectName(u"line")
@@ -180,7 +195,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.impTab.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -191,12 +206,17 @@ class Ui_Dialog(object):
         self.label.setText(QCoreApplication.translate("Dialog", u"Port Number:", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Timeout (sec)", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Changing port number require a restart of the socket after the current timeout expires (so wait at least the current timeout to use the export on Bridge)", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.connTab), QCoreApplication.translate("Dialog", u"Connection", None))
+        self.impTab.setTabText(self.impTab.indexOf(self.connTab), QCoreApplication.translate("Dialog", u"Connection", None))
+#if QT_CONFIG(tooltip)
+        self.askforproj.setToolTip(QCoreApplication.translate("Dialog", u"Dont show dialog asking if you want to create a new project when importing Megascan Assets that contain 3D meshes, the meshes are discarded and but the bitmaps are imported in the current opened project", None))
+#endif // QT_CONFIG(tooltip)
+        self.askforproj.setText(QCoreApplication.translate("Dialog", u"Dont ask to create new project", None))
+        self.impTab.setTabText(self.impTab.indexOf(self.tab), QCoreApplication.translate("Dialog", u"Import", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Megascan Link Plugin (Unofficial)", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Written by <a href=\"https://github.com/darkimage\" style=\"color: #55aaff\">Luca Faggion</a>", None))
         self.label_6.setText(QCoreApplication.translate("Dialog", u"Want to contribute to the plugin?", None))
         self.label_7.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p>If you would like to contribute to the development of the plugin you should visit the plugin repository on <a href=\"https://github.com/Raider-Arts/megascan-link\"><span style=\" text-decoration: underline; color:#55aaff;\">Github</span></a>.</p><p>If you need to report a bug or request a feature you can do it in the <a href=\"https://github.com/Raider-Arts/megascan-link/issues\"><span style=\" text-decoration: underline; color:#55aaff;\">issues page</span></a> of the repository or by sending a mail to <a href=\"mailto: luc-af@live.it\"><span style=\" text-decoration: underline; color:#55aaff;\">me</span></a> or to my <a href=\"mailto: team@raiderarts.net\"><span style=\" text-decoration: underline; color:#55aaff;\">team</span></a>.</p><p>I hope this plugin was usefull for you.</p><p>Have a great day!.</p></body></html>", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.About), QCoreApplication.translate("Dialog", u"About", None))
+        self.impTab.setTabText(self.impTab.indexOf(self.About), QCoreApplication.translate("Dialog", u"About", None))
         self.helpIcon.setText("")
         self.label_8.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><a href=\"todo add url\"><span style=\" text-decoration: underline; color:#55aaff;\">Help</span></a></p></body></html>", None))
         self.saveBtn.setText(QCoreApplication.translate("Dialog", u"Save", None))
