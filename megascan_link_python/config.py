@@ -28,6 +28,16 @@ class ConfigSettings(object):
 		cls.path = Path(util.getAbsCurrentPath(name + ".ini"))
 
 	@classmethod
+	def getAsDict(cls) -> dict:
+		"""Helper function that return the current config as a Python dictionary
+
+		:return: a dictionary of the current ini file
+		:rtype: dict
+		"""
+		cls.checkConfigState()
+		return {s: dict(cls.config.items(s)) for s in cls.config.sections()}
+		
+	@classmethod
 	def getConfigSettingAsList(cls, cat: str, prop: str, separator=",") -> List[str]:
 		"""Helper function to retrive a config option as a list 
 
