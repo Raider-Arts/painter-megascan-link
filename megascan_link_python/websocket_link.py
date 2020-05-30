@@ -1,7 +1,7 @@
 from websocket import create_connection
 import PySide2
 from PySide2 import QtWidgets, QtGui, QtCore
-from . import log
+from . import log, config
 import json
 
 class WebsocketLink(QtCore.QObject):
@@ -16,10 +16,12 @@ class WebsocketLink(QtCore.QObject):
 		:param data: the json data to send
 		:type data: object
 		"""
-		try:	
+		try:
 			ws = create_connection("ws://localhost:1212/")
 			log.LoggerLink.Log("Sending data to JS plugin")
-			ws.send(json.dumps(data))
+			jsonData = {"data": data,
+						"settings": config.ConfigSettings.getAsDict()}
+			ws.send(json.dumps(jsonData))
 			ws.close()
 		except Exception as e:
 			log.LoggerLink.Log("WEBSOCKET ERROR: {}".format(str(e)), log.logging.ERROR)
