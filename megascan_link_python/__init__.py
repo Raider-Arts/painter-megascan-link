@@ -87,10 +87,10 @@ def start_plugin():
 
 	# =================================================
 	# Initialize the config file
-	config.ConfigSettings.setIniFilePath("megascanlink")
+	config.ConfigSettings.setIniFilePath("settings")
 	iniconf = config.configparser.ConfigParser()
 	iniconf["Connection"] = {"port": "24981", "timeout": "5"}
-	iniconf["General"] = {"outputConsole": "false"}
+	iniconf["General"] = {"outputConsole": "false", "askcreateproject":"false"}
 	config.ConfigSettings.setUpInitialConfig(iniconf)
 
 	if checkDependencies():
