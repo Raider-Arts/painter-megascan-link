@@ -56,7 +56,7 @@ js_source_path = '../megascan_link_js/'
 breathe_default_project = "megascanlink"
 
 breathe_projects_source = {
-	"megascanlink" : (  os.path.abspath('..') + "/megascan_link_js/", ["AlgNewProject.qml","main.qml"] )
+	"megascanlink" : (  os.path.abspath('..') + "/megascan_link_js/", ["AlgNewProject.qml", "main.qml", "AlgSelectDialog.qml"] )
 }
 
 breathe_default_members = ('members', 'undoc-members')
