@@ -77,15 +77,32 @@ class Ui_Dialog(object):
         self.tab.setObjectName(u"tab")
         self.verticalLayout_2 = QVBoxLayout(self.tab)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_4 = QVBoxLayout()
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.groupBox = QGroupBox(self.tab)
+        self.groupBox.setObjectName(u"groupBox")
+        self.verticalLayout_5 = QVBoxLayout(self.groupBox)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.formLayout_2 = QFormLayout()
         self.formLayout_2.setObjectName(u"formLayout_2")
-        self.askforproj = QCheckBox(self.tab)
+        self.askforproj = QCheckBox(self.groupBox)
         self.askforproj.setObjectName(u"askforproj")
 
         self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.askforproj)
 
+        self.logtoconsole = QCheckBox(self.groupBox)
+        self.logtoconsole.setObjectName(u"logtoconsole")
 
-        self.verticalLayout_2.addLayout(self.formLayout_2)
+        self.formLayout_2.setWidget(1, QFormLayout.LabelRole, self.logtoconsole)
+
+
+        self.verticalLayout_5.addLayout(self.formLayout_2)
+
+
+        self.verticalLayout_4.addWidget(self.groupBox)
+
+
+        self.verticalLayout_2.addLayout(self.verticalLayout_4)
 
         self.impTab.addTab(self.tab, "")
         self.About = QWidget()
@@ -207,10 +224,12 @@ class Ui_Dialog(object):
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Timeout (sec)", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Changing port number require a restart of the socket after the current timeout expires (so wait at least the current timeout to use the export on Bridge)", None))
         self.impTab.setTabText(self.impTab.indexOf(self.connTab), QCoreApplication.translate("Dialog", u"Connection", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Dialog", u"General", None))
 #if QT_CONFIG(tooltip)
         self.askforproj.setToolTip(QCoreApplication.translate("Dialog", u"Dont show dialog asking if you want to create a new project when importing Megascan Assets that contain 3D meshes, the meshes are discarded and but the bitmaps are imported in the current opened project", None))
 #endif // QT_CONFIG(tooltip)
         self.askforproj.setText(QCoreApplication.translate("Dialog", u"Dont ask to create new project", None))
+        self.logtoconsole.setText(QCoreApplication.translate("Dialog", u"Print log to console", None))
         self.impTab.setTabText(self.impTab.indexOf(self.tab), QCoreApplication.translate("Dialog", u"Import", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Megascan Link Plugin (Unofficial)", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Written by <a href=\"https://github.com/darkimage\" style=\"color: #55aaff\">Luca Faggion</a>", None))

@@ -87,15 +87,35 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <layout class="QFormLayout" name="formLayout_2">
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="askforproj">
-             <property name="toolTip">
-              <string>Dont show dialog asking if you want to create a new project when importing Megascan Assets that contain 3D meshes, the meshes are discarded and but the bitmaps are imported in the current opened project</string>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>General</string>
              </property>
-             <property name="text">
-              <string>Dont ask to create new project</string>
-             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <layout class="QFormLayout" name="formLayout_2">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="askforproj">
+                  <property name="toolTip">
+                   <string>Dont show dialog asking if you want to create a new project when importing Megascan Assets that contain 3D meshes, the meshes are discarded and but the bitmaps are imported in the current opened project</string>
+                  </property>
+                  <property name="text">
+                   <string>Dont ask to create new project</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="logtoconsole">
+                  <property name="text">
+                   <string>Print log to console</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
