@@ -1,7 +1,17 @@
 Megascan Link JS (Javascript)
 ==============================
 
-Submodules
+Utility
 ----------
 
+	.. js:autofunction:: checkIfSettingsIsSet
+
+
+String Extensions
+-----------------
+
+	.. js:autoattribute:: String#format
+
+QML Modules
+-----------
 	.. autodoxygenindex::

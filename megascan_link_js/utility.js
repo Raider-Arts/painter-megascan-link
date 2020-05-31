@@ -1,7 +1,7 @@
 
 /**
- * Simple extension to the String object thtat allow to format a string python style
- * taken from: https://stackoverflow.com/a/4974690/6791579
+ * Simple extension to the String object that allow to format a string python style
+ * taken from `StackOverflow <https://stackoverflow.com/a/4974690/6791579>`_
  */
 String.prototype.format = function () {
 	var i = 0, args = arguments;
@@ -13,7 +13,7 @@ String.prototype.format = function () {
 /**
  * Helper function that will check if a propriety of a section is set or not by confronting
  * it with the following values ["true", "yes", "y", "ok"]
- * @param type: string setting the setting value to check
+ * @param {String} setting String value to check
  */
 function checkIfSettingsIsSet(setting) {
 	var filterstrings = ['true','yes','y','ok']
