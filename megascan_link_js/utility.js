@@ -31,3 +31,17 @@ function removeFromAssets(asset, assets) {
 		return element.id != asset.id
 	})
 }
+
+/**
+ * Extract for the lod list of an asset the High Poly meshes
+ * @param  {Object} asset the asset from which extract the High Poly meshes
+ * @returns {Array} the list of High poly meshes paths
+ */
+function getHpMeshes(asset) {
+	var hpmeshes = asset.lodList.filter(function (mesh) { return mesh.lod == "high" })
+	var res = []
+	hpmeshes.forEach(mesh => {
+		res.push(mesh.path)
+	})
+	return res
+}
