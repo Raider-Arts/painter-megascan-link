@@ -20,3 +20,14 @@ function checkIfSettingsIsSet(setting) {
 	var regex = new RegExp(filterstrings.join("|"), "i")
 	return regex.test(setting)
 }
+
+/**
+ * Filter the Megascan Asset list removing a speific asset
+ * @param  {Object} asset the asset to remove
+ * @param  {Array} assets the list of asset to filter
+ */
+function removeFromAssets(asset, assets) {
+	return assets.filter(function (element) {
+		return element.id != asset.id
+	})
+}
