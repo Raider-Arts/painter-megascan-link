@@ -7,13 +7,17 @@ import AlgWidgets 2.0
 import QtQuick.Layouts 1.12
 import "utility.js" as Util 
 
+
 PainterPlugin {
 	id: megascanlink
-
-	property var projectCreated: false
-
+	/** type:bool global flag that indicates that a project has been created */
+	property bool projectCreated: false
+	/** type:Object the settings values of the user config file */
 	property var settings: {}
 
+	/**
+	* Simply indicates that the plugin has been loaded correctly
+	*/
 	Component.onCompleted: {
 		alg.log.info("Megascan-link-JS loaded")
 	}
@@ -43,7 +47,10 @@ PainterPlugin {
 				alg.log.info(urls[lenght-1])
 			})
 		})
-		alg.resources.selectResources(urls)
+		// select the assets in the browser if the user want it
+		if(Util.checkIfSettingsIsSet(megascanlink.settings.General.selectafterimport)){
+			alg.resources.selectResources(urls)
+		}
 	}
 
 	/**
@@ -127,7 +134,11 @@ PainterPlugin {
 				}else if(alg.project.isOpen()){
 					megascanlink.importResources(data)
 				}else{
-					selectMesh.openWithAssets(data)
+					if(meshCheck.count > 1){
+						selectMesh.openWithAssets(data)
+					}else {
+						megascanlink.createProjectWithResources(meshCheck.lastMesh, Util.removeFromAssets(meshCheck.lastMesh, data))
+					}
 				}
 			});
 		}
