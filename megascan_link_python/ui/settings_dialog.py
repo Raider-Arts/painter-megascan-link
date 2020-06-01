@@ -25,8 +25,8 @@ class Ui_Dialog(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.impTab = QTabWidget(Dialog)
-        self.impTab.setObjectName(u"impTab")
+        self.tableWidget = QTabWidget(Dialog)
+        self.tableWidget.setObjectName(u"tableWidget")
         self.connTab = QWidget()
         self.connTab.setObjectName(u"connTab")
         self.gridLayout_2 = QGridLayout(self.connTab)
@@ -72,14 +72,14 @@ class Ui_Dialog(object):
 
         self.gridLayout_2.addLayout(self.formLayout, 0, 0, 1, 1)
 
-        self.impTab.addTab(self.connTab, "")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.verticalLayout_2 = QVBoxLayout(self.tab)
+        self.tableWidget.addTab(self.connTab, "")
+        self.importTab = QWidget()
+        self.importTab.setObjectName(u"importTab")
+        self.verticalLayout_2 = QVBoxLayout(self.importTab)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.groupBox = QGroupBox(self.tab)
+        self.groupBox = QGroupBox(self.importTab)
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout_5 = QVBoxLayout(self.groupBox)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -109,7 +109,97 @@ class Ui_Dialog(object):
 
         self.verticalLayout_2.addLayout(self.verticalLayout_4)
 
-        self.impTab.addTab(self.tab, "")
+        self.tableWidget.addTab(self.importTab, "")
+        self.bakeTab = QWidget()
+        self.bakeTab.setObjectName(u"bakeTab")
+        self.verticalLayout_7 = QVBoxLayout(self.bakeTab)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.enableBaking = QCheckBox(self.bakeTab)
+        self.enableBaking.setObjectName(u"enableBaking")
+
+        self.verticalLayout_7.addWidget(self.enableBaking)
+
+        self.groupBox_2 = QGroupBox(self.bakeTab)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.formLayout_3 = QFormLayout(self.groupBox_2)
+        self.formLayout_3.setObjectName(u"formLayout_3")
+        self.formLayout_3.setVerticalSpacing(10)
+        self.label_9 = QLabel(self.groupBox_2)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setLayoutDirection(Qt.LeftToRight)
+
+        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label_9)
+
+        self.pushButton = QPushButton(self.groupBox_2)
+        self.pushButton.setObjectName(u"pushButton")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy1)
+        self.pushButton.setMaximumSize(QSize(16777215, 16777215))
+        self.pushButton.setLayoutDirection(Qt.LeftToRight)
+
+        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.pushButton)
+
+        self.label_10 = QLabel(self.groupBox_2)
+        self.label_10.setObjectName(u"label_10")
+
+        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_10)
+
+        self.checkBox = QCheckBox(self.groupBox_2)
+        self.checkBox.setObjectName(u"checkBox")
+
+        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.checkBox)
+
+        self.label_11 = QLabel(self.groupBox_2)
+        self.label_11.setObjectName(u"label_11")
+
+        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.label_11)
+
+        self.checkBox_2 = QCheckBox(self.groupBox_2)
+        self.checkBox_2.setObjectName(u"checkBox_2")
+
+        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.checkBox_2)
+
+        self.label_12 = QLabel(self.groupBox_2)
+        self.label_12.setObjectName(u"label_12")
+
+        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_12)
+
+        self.pushButton_2 = QPushButton(self.groupBox_2)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy1)
+
+        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.pushButton_2)
+
+        self.label_13 = QLabel(self.groupBox_2)
+        self.label_13.setObjectName(u"label_13")
+
+        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_13)
+
+        self.horizontalSlider = QSlider(self.groupBox_2)
+        self.horizontalSlider.setObjectName(u"horizontalSlider")
+        self.horizontalSlider.setOrientation(Qt.Horizontal)
+
+        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.horizontalSlider)
+
+        self.label_14 = QLabel(self.groupBox_2)
+        self.label_14.setObjectName(u"label_14")
+
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_14)
+
+        self.horizontalSlider_2 = QSlider(self.groupBox_2)
+        self.horizontalSlider_2.setObjectName(u"horizontalSlider_2")
+        self.horizontalSlider_2.setOrientation(Qt.Horizontal)
+
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.horizontalSlider_2)
+
+
+        self.verticalLayout_7.addWidget(self.groupBox_2)
+
+        self.tableWidget.addTab(self.bakeTab, "")
         self.About = QWidget()
         self.About.setObjectName(u"About")
         self.gridLayout_6 = QGridLayout(self.About)
@@ -164,9 +254,9 @@ class Ui_Dialog(object):
 
         self.gridLayout_6.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
 
-        self.impTab.addTab(self.About, "")
+        self.tableWidget.addTab(self.About, "")
 
-        self.verticalLayout.addWidget(self.impTab)
+        self.verticalLayout.addWidget(self.tableWidget)
 
         self.line = QFrame(Dialog)
         self.line.setObjectName(u"line")
@@ -179,11 +269,11 @@ class Ui_Dialog(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.helpIcon = QLabel(Dialog)
         self.helpIcon.setObjectName(u"helpIcon")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.helpIcon.sizePolicy().hasHeightForWidth())
-        self.helpIcon.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.helpIcon.sizePolicy().hasHeightForWidth())
+        self.helpIcon.setSizePolicy(sizePolicy2)
         self.helpIcon.setMinimumSize(QSize(24, 24))
         self.helpIcon.setBaseSize(QSize(24, 24))
 
@@ -217,7 +307,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.impTab.setCurrentIndex(0)
+        self.tableWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -228,7 +318,7 @@ class Ui_Dialog(object):
         self.label.setText(QCoreApplication.translate("Dialog", u"Port Number:", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Timeout (sec)", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Changing port number require a restart of the socket after the current timeout expires (so wait at least the current timeout to use the export on Bridge)", None))
-        self.impTab.setTabText(self.impTab.indexOf(self.connTab), QCoreApplication.translate("Dialog", u"Connection", None))
+        self.tableWidget.setTabText(self.tableWidget.indexOf(self.connTab), QCoreApplication.translate("Dialog", u"Connection", None))
         self.groupBox.setTitle(QCoreApplication.translate("Dialog", u"General", None))
 #if QT_CONFIG(tooltip)
         self.askforproj.setToolTip(QCoreApplication.translate("Dialog", u"Dont show dialog asking if you want to create a new project when importing Megascan Assets that contain 3D meshes, the meshes are discarded and but the bitmaps are imported in the current opened project", None))
@@ -236,12 +326,25 @@ class Ui_Dialog(object):
         self.askforproj.setText(QCoreApplication.translate("Dialog", u"Dont ask to create new project", None))
         self.logtoconsole.setText(QCoreApplication.translate("Dialog", u"Print log to console", None))
         self.selectafterimport.setText(QCoreApplication.translate("Dialog", u"Select resources after import", None))
-        self.impTab.setTabText(self.impTab.indexOf(self.tab), QCoreApplication.translate("Dialog", u"Import", None))
+        self.tableWidget.setTabText(self.tableWidget.indexOf(self.importTab), QCoreApplication.translate("Dialog", u"Import", None))
+        self.enableBaking.setText(QCoreApplication.translate("Dialog", u"Enable Bake", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"Common Parameters", None))
+        self.label_9.setText(QCoreApplication.translate("Dialog", u"Texture Size:", None))
+        self.pushButton.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
+        self.label_10.setText(QCoreApplication.translate("Dialog", u"Relative to Bouding Box", None))
+        self.checkBox.setText("")
+        self.label_11.setText(QCoreApplication.translate("Dialog", u"Average Normals", None))
+        self.checkBox_2.setText("")
+        self.label_12.setText(QCoreApplication.translate("Dialog", u"Antialiasing", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
+        self.label_13.setText(QCoreApplication.translate("Dialog", u"Max Frontal Distance", None))
+        self.label_14.setText(QCoreApplication.translate("Dialog", u"Max Rear Distance", None))
+        self.tableWidget.setTabText(self.tableWidget.indexOf(self.bakeTab), QCoreApplication.translate("Dialog", u"Bake", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Megascan Link Plugin (Unofficial)", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Written by <a href=\"https://github.com/darkimage\" style=\"color: #55aaff\">Luca Faggion</a>", None))
         self.label_6.setText(QCoreApplication.translate("Dialog", u"Want to contribute to the plugin?", None))
         self.label_7.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p>If you would like to contribute to the development of the plugin you should visit the plugin repository on <a href=\"https://github.com/Raider-Arts/megascan-link\"><span style=\" text-decoration: underline; color:#55aaff;\">Github</span></a>.</p><p>If you need to report a bug or request a feature you can do it in the <a href=\"https://github.com/Raider-Arts/megascan-link/issues\"><span style=\" text-decoration: underline; color:#55aaff;\">issues page</span></a> of the repository or by sending a mail to <a href=\"mailto: luc-af@live.it\"><span style=\" text-decoration: underline; color:#55aaff;\">me</span></a> or to my <a href=\"mailto: team@raiderarts.net\"><span style=\" text-decoration: underline; color:#55aaff;\">team</span></a>.</p><p>I hope this plugin was usefull for you.</p><p>Have a great day!.</p></body></html>", None))
-        self.impTab.setTabText(self.impTab.indexOf(self.About), QCoreApplication.translate("Dialog", u"About", None))
+        self.tableWidget.setTabText(self.tableWidget.indexOf(self.About), QCoreApplication.translate("Dialog", u"About", None))
         self.helpIcon.setText("")
         self.label_8.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><a href=\"todo add url\"><span style=\" text-decoration: underline; color:#55aaff;\">Help</span></a></p></body></html>", None))
         self.saveBtn.setText(QCoreApplication.translate("Dialog", u"Save", None))
