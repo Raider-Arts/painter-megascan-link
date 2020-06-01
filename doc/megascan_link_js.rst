@@ -14,4 +14,8 @@ String Extensions
 
 QML Modules
 -----------
-	.. autodoxygenindex::
+	.. autodoxygenfile:: main.qml
+
+	.. autodoxygenfile:: AlgNewProject.qml
+
+	.. autodoxygenfile:: AlgSelectDialog.qml
