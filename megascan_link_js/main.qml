@@ -12,6 +12,8 @@ PainterPlugin {
 
 	property var projectCreated: false
 
+	property var settings: {}
+
 	Component.onCompleted: {
 		alg.log.info("Megascan-link-JS loaded")
 	}
@@ -57,7 +59,7 @@ PainterPlugin {
 			alg.project.save("", alg.project.SaveMode.Full)
 			alg.project.close()
 		}
-		alg.log.info("Creating project with resources, using mesh: {}".format(data.name))
+		alg.log.info("Creating project with resources, using mesh: {}".format(asset.name))
 		var bitmaps = []
 		asset.components.forEach(bitmap => {
 			var lenght = bitmaps.push(alg.fileIO.localFileToUrl(bitmap.path))
@@ -82,12 +84,16 @@ PainterPlugin {
 	function checkForMeshAssets(data){
 		// Serch in the Megascan import data if there is a Mesh Asset
 		var hasMesh = false
+		var count = 0
+		var mesh = {}
 		data.forEach(asset => {
 			if(asset.type == "3d" || asset.type == "3dplant"){
 				hasMesh = true
+				count += 1
+				mesh = asset
 			}
 		})
-		return hasMesh
+		return { hasMeshes: hasMesh, count: count, lastMesh: mesh, data: data}
 	}
 
 	/**
@@ -106,9 +112,10 @@ PainterPlugin {
 				alg.log.info("Receiving data from Megascan-link-python plugin")
 				var pythondata = JSON.parse(message)
 				var data = pythondata.data
-				var settings = pythondata.settings
-				if(checkForMeshAssets(data) && alg.project.isOpen() && Util.checkIfSettingsIsSet(settings.General.askcreateproject)){
-					createProject.openWithData(data)
+				megascanlink.settings = pythondata.settings
+				var meshCheck = checkForMeshAssets(data)
+				if(meshCheck.hasMeshes && alg.project.isOpen() && Util.checkIfSettingsIsSet(megascanlink.settings.General.askcreateproject)){
+					createProject.openWithData(meshCheck)
 				}else if(alg.project.isOpen()){
 					megascanlink.importResources(data)
 				}else{
@@ -139,13 +146,17 @@ PainterPlugin {
 		id: createProject
 
 		onImportPressed: {
-			megascanlink.importResources(importData)
+			megascanlink.importResources(importData.data)
 			createProject.close()
 		}
 
 		onNewProjectPressed : {
-			selectMesh.open()
-			selectMesh.addAssets(importData)
+			if(importData.count > 1){
+				selectMesh.open()
+				selectMesh.addAssets(importData.data)
+			}else{
+				megascanlink.createProjectWithResources(importData.lastMesh, Util.removeFromAssets(importData.lastMesh, importData.data))
+			}
 			createProject.close()
 		}
 	}
