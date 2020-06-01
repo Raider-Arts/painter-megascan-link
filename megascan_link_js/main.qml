@@ -14,22 +14,13 @@ PainterPlugin {
 	property bool projectCreated: false
 	/** type:Object the settings values of the user config file */
 	property var settings: {}
-
+	/** type:Object the current Megascan 3D asset used in the project */
+	property var meshAsset: {}
 	/**
 	* Simply indicates that the plugin has been loaded correctly
 	*/
 	Component.onCompleted: {
 		alg.log.info("Megascan-link-JS loaded")
-	}
-
-	onActiveTextureSetChanged: function(stackPath) {
-		// Called after the active texture set stack changes, 'activeTextureSetStack' contains the new active stack path.
-		// The stack path may be empty if no texture set stack is active. This can happen when closing a project.
-		if(megascanlink.projectCreated == true) {
-			megascanlink.projectCreated = false
-			alg.log.info("Changing texture set [{}] resolution to {}".format(stackPath, 4096))
-			alg.texturesets.setResolution(stackPath, [12,12])
-		}
 	}
 
 	/**
@@ -50,6 +41,22 @@ PainterPlugin {
 		// select the assets in the browser if the user want it
 		if(Util.checkIfSettingsIsSet(megascanlink.settings.General.selectafterimport)){
 			alg.resources.selectResources(urls)
+		}
+	}
+
+	/**
+	* Set up the baking parameters based on the user config preset parameters and then perform the bake
+	* @param type:Object asset the asset to retrive the bake data
+	*/
+	function setUpAndBake(asset){
+		if((Object.keys(asset).length !== 0)) {
+			alg.log.info("Setting up baking parameters and perform textures baking")
+			var bakingParams = alg.baking.commonBakingParameters()
+			alg.log.info(bakingParams)
+			bakingParams.commonParameters.Output_Size = [12,12]
+			bakingParams.detailParameters.High_Definition_Meshes = Util.getHpMeshes(asset)
+			alg.baking.setCommonBakingParameters(bakingParams)
+			alg.baking.bake(alg.texturesets.getActiveTextureSet())
 		}
 	}
 
@@ -88,6 +95,8 @@ PainterPlugin {
 			}
 			// set the global `projectCreated` variable informing other actions that we have created a new project
 			megascanlink.projectCreated = true
+			// set the current project mesh asset 
+			megascanlink.meshAsset = asset
 		}
 	}
 
@@ -110,6 +119,19 @@ PainterPlugin {
 		})
 		return { hasMeshes: hasMesh, count: count, lastMesh: mesh, data: data}
 	}
+
+
+	onActiveTextureSetChanged: function(stackPath) {
+		// Called after the active texture set stack changes, 'activeTextureSetStack' contains the new active stack path.
+		// The stack path may be empty if no texture set stack is active. This can happen when closing a project.
+		if(megascanlink.projectCreated == true) {
+			megascanlink.projectCreated = false
+			alg.log.info("Changing texture set [{}] resolution to {}".format(stackPath, 4096))
+			alg.texturesets.setResolution(stackPath, [12,12])
+			megascanlink.setUpAndBake(megascanlink.meshAsset)
+		}
+	}
+
 
 	/**
 	* This is the connection from which the python plugin forward the data retrived over socket from Quixel Bridge to this
