@@ -54,26 +54,34 @@ PainterPlugin {
 	function createProjectWithResources(asset, imports) {
 		// Create a new project using the mesh specified in the data source of the Megascan Asset
 		// Data is a single Megascan asset
+		var err = false
 		if(alg.project.isOpen()){
 			alg.log.info("Saving current project")
-			alg.project.save("", alg.project.SaveMode.Full)
-			alg.project.close()
+			try {
+				alg.project.save("", alg.project.SaveMode.Full)
+				alg.project.close()
+			} catch (error) {
+				alg.log.error("Failed to create new project could not save current opened project")
+				err = true
+				saveError.open()
+			}
 		}
-		alg.log.info("Creating project with resources, using mesh: {}".format(asset.name))
-		var bitmaps = []
-		asset.components.forEach(bitmap => {
-			var lenght = bitmaps.push(alg.fileIO.localFileToUrl(bitmap.path))
-			alg.log.info("Loading mesh Texture: {}".format(bitmaps[lenght-1]))
-		})
-		alg.project.create(alg.fileIO.localFileToUrl(asset.meshList[0].path), bitmaps)
+		if(!err) {
+			alg.log.info("Creating project with resources, using mesh: {}".format(asset.name))
+			var bitmaps = []
+			asset.components.forEach(bitmap => {
+				var lenght = bitmaps.push(alg.fileIO.localFileToUrl(bitmap.path))
+				alg.log.info("Loading mesh Texture: {}".format(bitmaps[lenght-1]))
+			})
+			alg.project.create(alg.fileIO.localFileToUrl(asset.meshList[0].path), bitmaps)
 
-		//Import additional resources if they are present
-		if(Object.keys(imports).length !== 0){
-			megascanlink.importResources(imports)
+			//Import additional resources if they are present
+			if(Object.keys(imports).length !== 0){
+				megascanlink.importResources(imports)
+			}
+			// set the global `projectCreated` variable informing other actions that we have created a new project
+			megascanlink.projectCreated = true
 		}
-		// set the global `projectCreated` variable informing other actions that we have created a new project
-		megascanlink.projectCreated = true
-
 	}
 
 	/**
@@ -123,6 +131,35 @@ PainterPlugin {
 				}
 			});
 		}
+	}
+
+	AlgDialog {
+		id: saveError
+		title: "ERROR Could not save current project"
+		defaultButtonText: "Ok"
+		visible: false
+		width: 400
+		height: 100
+		maximumHeight: height
+		maximumWidth: width
+		minimumHeight: height
+		minimumWidth: width
+		ColumnLayout {
+			anchors.fill: parent
+			anchors.margins: 10
+			AlgLabel  {
+				Layout.fillWidth: true
+				text: "Could not save the project, please save or close the current project before trying to import Megascan Assets"
+				wrapMode: Text.Wrap
+			}
+			Item {
+				// spacer item
+				Layout.fillWidth: true
+				Layout.fillHeight: true
+			}
+		}
+
+		onAccepted: saveError.close()
 	}
 
 	AlgSelectDialog {
