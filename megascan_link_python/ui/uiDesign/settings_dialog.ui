@@ -113,6 +113,13 @@
                   </property>
                  </widget>
                 </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="selectafterimport">
+                  <property name="text">
+                   <string>Select resources after import</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
              </layout>

@@ -35,6 +35,7 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.cancelBtn.pressed.connect(lambda: self.close())
 		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
+		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
 
 	def _setNeedRestart(self, changeStr):
 		"""Internal method used to set the needRestart variable used to restart the socket if the 
@@ -52,6 +53,8 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		config.ConfigSettings.updateConfigSetting("General", "outputConsole", logtoconsoleState, False)
 		askcreateprojectState = False if self.askforproj.checkState() == Qt.CheckState.Checked else True
 		config.ConfigSettings.updateConfigSetting("General", "askcreateproject", askcreateprojectState, False)
+		selectafterimportState = True if self.selectafterimport.checkState() == Qt.CheckState.Checked else False
+		config.ConfigSettings.updateConfigSetting("General", "selectafterimport", selectafterimportState, False)
 		config.ConfigSettings.flush()
 		if self.needRestart:
 			self._socketRef.restart()

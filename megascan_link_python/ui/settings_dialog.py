@@ -95,6 +95,11 @@ class Ui_Dialog(object):
 
         self.formLayout_2.setWidget(1, QFormLayout.LabelRole, self.logtoconsole)
 
+        self.selectafterimport = QCheckBox(self.groupBox)
+        self.selectafterimport.setObjectName(u"selectafterimport")
+
+        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.selectafterimport)
+
 
         self.verticalLayout_5.addLayout(self.formLayout_2)
 
@@ -230,6 +235,7 @@ class Ui_Dialog(object):
 #endif // QT_CONFIG(tooltip)
         self.askforproj.setText(QCoreApplication.translate("Dialog", u"Dont ask to create new project", None))
         self.logtoconsole.setText(QCoreApplication.translate("Dialog", u"Print log to console", None))
+        self.selectafterimport.setText(QCoreApplication.translate("Dialog", u"Select resources after import", None))
         self.impTab.setTabText(self.impTab.indexOf(self.tab), QCoreApplication.translate("Dialog", u"Import", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Megascan Link Plugin (Unofficial)", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Written by <a href=\"https://github.com/darkimage\" style=\"color: #55aaff\">Luca Faggion</a>", None))
