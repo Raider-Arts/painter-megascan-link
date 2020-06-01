@@ -90,7 +90,7 @@ def start_plugin():
 	config.ConfigSettings.setIniFilePath("settings")
 	iniconf = config.configparser.ConfigParser()
 	iniconf["Connection"] = {"port": "24981", "timeout": "5"}
-	iniconf["General"] = {"outputConsole": "false", "askcreateproject":"false"}
+	iniconf["General"] = {"outputConsole": "false", "askcreateproject":"true", "selectafterimport": "true"}
 	config.ConfigSettings.setUpInitialConfig(iniconf)
 
 	if checkDependencies():
