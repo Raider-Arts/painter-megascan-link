@@ -2,6 +2,8 @@ from PySide2 import QtCore, QtGui, QtWidgets
 import re
 
 class PainterSlider(QtWidgets.QSlider):
+    """Custom QSlider emulating the look of the Substance Painter native one
+    """    
 
     def __init__(self, parent):
         super().__init__(QtCore.Qt.Orientation.Horizontal, parent=parent)
@@ -29,7 +31,12 @@ class PainterSlider(QtWidgets.QSlider):
                                 background: #666666;
                             }""")
 
-    def _drawProgress(self, value):
+    def _drawProgress(self, value: int):
+        """Used to draw the QSlider hoover with different colors based on the position of the handle
+
+        :param value: the current handle position (0-100 range) 
+        :type value: int
+        """        
         styleSheet = self.styleSheet()
         currstop = max(min((value+1)/100.0, 0.99), 0.01)
         lineargradient = f'qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #cccccc, stop:{currstop} #cccccc , stop:{currstop+0.01} #666666, stop:1 #666666);'
