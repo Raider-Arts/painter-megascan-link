@@ -9,3 +9,6 @@ copytopainter.py
 
 #ingore vcode folder
 .vscode/
+
+#ingore temp folders
+temp/
