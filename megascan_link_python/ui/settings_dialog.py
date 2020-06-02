@@ -121,20 +121,20 @@ class Ui_Dialog(object):
 
         self.verticalLayout_7.addWidget(self.enableBaking)
 
-        self.bakeParameters = QGroupBox(self.bakeTab)
-        self.bakeParameters.setObjectName(u"bakeParameters")
-        self.verticalLayout_6 = QVBoxLayout(self.bakeParameters)
+        self.bakeParametersGroup = QGroupBox(self.bakeTab)
+        self.bakeParametersGroup.setObjectName(u"bakeParametersGroup")
+        self.verticalLayout_6 = QVBoxLayout(self.bakeParametersGroup)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout_6.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.formLayout_3 = QFormLayout()
-        self.formLayout_3.setObjectName(u"formLayout_3")
-        self.formLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.label_9 = QLabel(self.bakeParameters)
+        self.bakeParameters = QFormLayout()
+        self.bakeParameters.setObjectName(u"bakeParameters")
+        self.bakeParameters.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.label_9 = QLabel(self.bakeParametersGroup)
         self.label_9.setObjectName(u"label_9")
 
-        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label_9)
+        self.bakeParameters.setWidget(0, QFormLayout.LabelRole, self.label_9)
 
-        self.texSize = QPushButton(self.bakeParameters)
+        self.texSize = QPushButton(self.bakeParametersGroup)
         self.texSize.setObjectName(u"texSize")
         sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
@@ -150,44 +150,44 @@ class Ui_Dialog(object):
 "	border: 1px solid #4d4d4d;\n"
 "}")
 
-        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.texSize)
+        self.bakeParameters.setWidget(0, QFormLayout.FieldRole, self.texSize)
 
-        self.relativeToBoundingBoxLabel = QLabel(self.bakeParameters)
+        self.relativeToBoundingBoxLabel = QLabel(self.bakeParametersGroup)
         self.relativeToBoundingBoxLabel.setObjectName(u"relativeToBoundingBoxLabel")
 
-        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.relativeToBoundingBoxLabel)
+        self.bakeParameters.setWidget(1, QFormLayout.LabelRole, self.relativeToBoundingBoxLabel)
 
-        self.relativeToBoundingBoxCheckBox = QCheckBox(self.bakeParameters)
+        self.relativeToBoundingBoxCheckBox = QCheckBox(self.bakeParametersGroup)
         self.relativeToBoundingBoxCheckBox.setObjectName(u"relativeToBoundingBoxCheckBox")
 
-        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.relativeToBoundingBoxCheckBox)
+        self.bakeParameters.setWidget(1, QFormLayout.FieldRole, self.relativeToBoundingBoxCheckBox)
 
-        self.averageNormalsLabel = QLabel(self.bakeParameters)
+        self.averageNormalsLabel = QLabel(self.bakeParametersGroup)
         self.averageNormalsLabel.setObjectName(u"averageNormalsLabel")
 
-        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.averageNormalsLabel)
+        self.bakeParameters.setWidget(2, QFormLayout.LabelRole, self.averageNormalsLabel)
 
-        self.averageNormalsCheckBox = QCheckBox(self.bakeParameters)
+        self.averageNormalsCheckBox = QCheckBox(self.bakeParametersGroup)
         self.averageNormalsCheckBox.setObjectName(u"averageNormalsCheckBox")
 
-        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.averageNormalsCheckBox)
+        self.bakeParameters.setWidget(2, QFormLayout.FieldRole, self.averageNormalsCheckBox)
 
-        self.maxRearDistanceLabel = QLabel(self.bakeParameters)
+        self.maxRearDistanceLabel = QLabel(self.bakeParametersGroup)
         self.maxRearDistanceLabel.setObjectName(u"maxRearDistanceLabel")
 
-        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.maxRearDistanceLabel)
+        self.bakeParameters.setWidget(3, QFormLayout.LabelRole, self.maxRearDistanceLabel)
 
-        self.antialiasingLabel = QLabel(self.bakeParameters)
+        self.antialiasingLabel = QLabel(self.bakeParametersGroup)
         self.antialiasingLabel.setObjectName(u"antialiasingLabel")
 
-        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.antialiasingLabel)
+        self.bakeParameters.setWidget(5, QFormLayout.LabelRole, self.antialiasingLabel)
 
-        self.pushButton = QPushButton(self.bakeParameters)
+        self.pushButton = QPushButton(self.bakeParametersGroup)
         self.pushButton.setObjectName(u"pushButton")
 
-        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.pushButton)
+        self.bakeParameters.setWidget(5, QFormLayout.FieldRole, self.pushButton)
 
-        self.maxRearDistanceSlider = PainterSliderControl(self.bakeParameters)
+        self.maxRearDistanceSlider = PainterSliderControl(self.bakeParametersGroup)
         self.maxRearDistanceSlider.setObjectName(u"maxRearDistanceSlider")
         sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
@@ -197,31 +197,48 @@ class Ui_Dialog(object):
         self.maxRearDistanceSlider.setMinimumSize(QSize(0, 0))
         self.maxRearDistanceSlider.setMaximumSize(QSize(166667, 16777215))
 
-        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.maxRearDistanceSlider)
+        self.bakeParameters.setWidget(3, QFormLayout.FieldRole, self.maxRearDistanceSlider)
 
-        self.widget = PainterSliderControl(self.bakeParameters)
+        self.widget = PainterSliderControl(self.bakeParametersGroup)
         self.widget.setObjectName(u"widget")
         sizePolicy2.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
         self.widget.setSizePolicy(sizePolicy2)
         self.widget.setMinimumSize(QSize(0, 0))
         self.widget.setMaximumSize(QSize(16777215, 16777215))
 
-        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.widget)
+        self.bakeParameters.setWidget(4, QFormLayout.FieldRole, self.widget)
 
-        self.label_10 = QLabel(self.bakeParameters)
+        self.label_10 = QLabel(self.bakeParametersGroup)
         self.label_10.setObjectName(u"label_10")
 
-        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_10)
+        self.bakeParameters.setWidget(4, QFormLayout.LabelRole, self.label_10)
 
 
-        self.verticalLayout_6.addLayout(self.formLayout_3)
+        self.verticalLayout_6.addLayout(self.bakeParameters)
+
+        self.lineEdit = QLineEdit(self.bakeParametersGroup)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setStyleSheet(u"QLineEdit {\n"
+"	background: #333333;\n"
+"	border-bottom: solid .75em transparent;\n"
+"	margin-bottom: 1px;\n"
+"	box-shadow: 0 1px 0 -1px black; \n"
+"	margin: 0 0 10px;\n"
+"	background-clip:padding;\n"
+"}\n"
+"\n"
+"QLineEdit:hover {\n"
+"	background: #262626;\n"
+"}")
+
+        self.verticalLayout_6.addWidget(self.lineEdit)
 
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_6.addItem(self.verticalSpacer_2)
 
 
-        self.verticalLayout_7.addWidget(self.bakeParameters)
+        self.verticalLayout_7.addWidget(self.bakeParametersGroup)
 
         self.tableWidget.addTab(self.bakeTab, "")
         self.About = QWidget()
@@ -352,7 +369,7 @@ class Ui_Dialog(object):
         self.selectafterimport.setText(QCoreApplication.translate("Dialog", u"Select resources after import", None))
         self.tableWidget.setTabText(self.tableWidget.indexOf(self.importTab), QCoreApplication.translate("Dialog", u"Import", None))
         self.enableBaking.setText(QCoreApplication.translate("Dialog", u"Enable Bake", None))
-        self.bakeParameters.setTitle(QCoreApplication.translate("Dialog", u"Common Parameters", None))
+        self.bakeParametersGroup.setTitle(QCoreApplication.translate("Dialog", u"Common Parameters", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"Texture Size", None))
         self.texSize.setText(QCoreApplication.translate("Dialog", u"TextureSize", None))
         self.relativeToBoundingBoxLabel.setText(QCoreApplication.translate("Dialog", u"Relative To Bounding Box", None))

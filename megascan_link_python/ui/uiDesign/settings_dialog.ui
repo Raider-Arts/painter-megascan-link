@@ -142,7 +142,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="bakeParameters">
+          <widget class="QGroupBox" name="bakeParametersGroup">
            <property name="title">
             <string>Common Parameters</string>
            </property>
@@ -151,7 +151,7 @@
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
-             <layout class="QFormLayout" name="formLayout_3">
+             <layout class="QFormLayout" name="bakeParameters">
               <property name="sizeConstraint">
                <enum>QLayout::SetDefaultConstraint</enum>
               </property>
@@ -295,6 +295,24 @@
                </widget>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+	background: #333333;
+	border-bottom: solid .75em transparent;
+	margin-bottom: 1px;
+	box-shadow: 0 1px 0 -1px black; 
+	margin: 0 0 10px;
+	background-clip:padding;
+}
+
+QLineEdit:hover {
+	background: #262626;
+}</string>
+              </property>
+             </widget>
             </item>
             <item>
              <spacer name="verticalSpacer_2">

@@ -37,7 +37,7 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
 		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
-		# self._setControlsStateOfWidget(self.bakeParameters, False)
+		self._setControlsStateOfWidget(self.bakeParametersGroup, True)
 		menu = QtWidgets.QMenu(self)
 		menu.setFixedWidth(self.texSize.width())
 		menu.addAction("testttt1")
@@ -54,10 +54,9 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		:param state: the state to set to all the children
 		:type state: bool
 		"""		
-		paramControls = widget.findChildren(QtCore.QObject)
+		paramControls = widget.findChildren(QtWidgets.QWidget)
 		for paramControl in paramControls:
-			if not isinstance(paramControl, QtWidgets.QLayout):
-				paramControl.setDisabled(state)
+				paramControl.setDisabled(not state)
 
 	def _setNeedRestart(self, changeStr):
 		"""Internal method used to set the needRestart variable used to restart the socket if the 
