@@ -8,6 +8,7 @@ class PainterLineEdit(QtWidgets.QLineEdit):
 	def __init__(self, text, parent=None):
 		super().__init__(text, parent)
 		print("LINE EDIT PAINTER")
+		self.setAlignment(QtCore.Qt.AlignRight)
 		self.setStyleSheet("""QLineEdit {
 								background: #333333;
 								border-bottom: 1px solid #333333;
