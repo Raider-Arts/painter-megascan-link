@@ -38,13 +38,6 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
 		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
 		self._setControlsStateOfWidget(self.bakeParametersGroup, True)
-		menu = QtWidgets.QMenu(self)
-		menu.setFixedWidth(self.texSize.width())
-		menu.addAction("testttt1")
-		menu.addAction("testttt2")
-		menu.addAction("testttt3")
-		menu.addAction("testttt4")
-		self.texSize.setMenu(menu)
 
 	def _setControlsStateOfWidget(self, widget: QtCore.QObject, state: bool):
 		"""Set the state (Enabled/Disabled) of all the children of the input widget
