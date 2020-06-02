@@ -13,7 +13,7 @@ import substance_painter.ui as sbsui
 
 from . import dialogs, log, config, sockets, websocket_link
 from . import utilities as util
-from .ui import icon, painterslider, painterslidercontrol
+from .ui import icon, painterslider, painterslidercontrol, painterlineedit
 
 importlib.reload(icon)
 importlib.reload(dialogs)
@@ -23,6 +23,7 @@ importlib.reload(config)
 importlib.reload(sockets)
 importlib.reload(painterslider)
 importlib.reload(painterslidercontrol)
+importlib.reload(painterlineedit)
 
 
 def checkDependencies() -> bool:
