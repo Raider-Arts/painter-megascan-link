@@ -7,7 +7,7 @@ and then converted to python code using the buildDialogs.py script
 import importlib
 
 import PySide2
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 from PySide2.QtCore import Qt
 
 from .ui import settings_dialog, icon
@@ -36,6 +36,27 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
 		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
+		self._setControlsStateOfWidget(self.bakeParameters, False)
+		menu = QtWidgets.QMenu(self)
+		menu.setFixedWidth(self.texSize.width())
+		menu.addAction("testttt1")
+		menu.addAction("testttt2")
+		menu.addAction("testttt3")
+		menu.addAction("testttt4")
+		self.texSize.setMenu(menu)
+
+	def _setControlsStateOfWidget(self, widget: QtCore.QObject, state: bool):
+		"""Set the state (Enabled/Disabled) of all the children of the input widget
+
+		:param widget: the parent widget
+		:type widget: QtCore.QObject
+		:param state: the state to set to all the children
+		:type state: bool
+		"""		
+		paramControls = widget.findChildren(QtCore.QObject)
+		for paramControl in paramControls:
+			if not isinstance(paramControl, QtWidgets.QLayout):
+				paramControl.setDisabled(state)
 
 	def _setNeedRestart(self, changeStr):
 		"""Internal method used to set the needRestart variable used to restart the socket if the 
