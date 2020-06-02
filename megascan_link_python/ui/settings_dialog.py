@@ -119,85 +119,144 @@ class Ui_Dialog(object):
 
         self.verticalLayout_7.addWidget(self.enableBaking)
 
-        self.groupBox_2 = QGroupBox(self.bakeTab)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        self.formLayout_3 = QFormLayout(self.groupBox_2)
+        self.bakeParameters = QGroupBox(self.bakeTab)
+        self.bakeParameters.setObjectName(u"bakeParameters")
+        self.formLayout_3 = QFormLayout(self.bakeParameters)
         self.formLayout_3.setObjectName(u"formLayout_3")
         self.formLayout_3.setVerticalSpacing(10)
-        self.label_9 = QLabel(self.groupBox_2)
+        self.label_9 = QLabel(self.bakeParameters)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setLayoutDirection(Qt.LeftToRight)
 
         self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label_9)
 
-        self.pushButton = QPushButton(self.groupBox_2)
-        self.pushButton.setObjectName(u"pushButton")
+        self.texSize = QPushButton(self.bakeParameters)
+        self.texSize.setObjectName(u"texSize")
         sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy1)
-        self.pushButton.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton.setLayoutDirection(Qt.LeftToRight)
+        sizePolicy1.setHeightForWidth(self.texSize.sizePolicy().hasHeightForWidth())
+        self.texSize.setSizePolicy(sizePolicy1)
+        self.texSize.setMinimumSize(QSize(0, 18))
+        self.texSize.setMaximumSize(QSize(16777215, 18))
+        self.texSize.setBaseSize(QSize(0, 18))
+        self.texSize.setLayoutDirection(Qt.LeftToRight)
+        self.texSize.setStyleSheet(u"QPushButton {\n"
+"	background: #262626;\n"
+"	border: 1px solid #4d4d4d;\n"
+"}")
 
-        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.pushButton)
+        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.texSize)
 
-        self.label_10 = QLabel(self.groupBox_2)
+        self.label_10 = QLabel(self.bakeParameters)
         self.label_10.setObjectName(u"label_10")
 
         self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_10)
 
-        self.checkBox = QCheckBox(self.groupBox_2)
+        self.checkBox = QCheckBox(self.bakeParameters)
         self.checkBox.setObjectName(u"checkBox")
 
         self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.checkBox)
 
-        self.label_11 = QLabel(self.groupBox_2)
+        self.label_11 = QLabel(self.bakeParameters)
         self.label_11.setObjectName(u"label_11")
 
         self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.label_11)
 
-        self.checkBox_2 = QCheckBox(self.groupBox_2)
+        self.checkBox_2 = QCheckBox(self.bakeParameters)
         self.checkBox_2.setObjectName(u"checkBox_2")
 
         self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.checkBox_2)
 
-        self.label_12 = QLabel(self.groupBox_2)
+        self.label_12 = QLabel(self.bakeParameters)
         self.label_12.setObjectName(u"label_12")
 
         self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_12)
 
-        self.pushButton_2 = QPushButton(self.groupBox_2)
+        self.pushButton_2 = QPushButton(self.bakeParameters)
         self.pushButton_2.setObjectName(u"pushButton_2")
         sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
         self.pushButton_2.setSizePolicy(sizePolicy1)
+        self.pushButton_2.setMinimumSize(QSize(0, 18))
+        self.pushButton_2.setMaximumSize(QSize(16777215, 18))
+        self.pushButton_2.setBaseSize(QSize(0, 18))
+        self.pushButton_2.setStyleSheet(u"QPushButton {\n"
+"	background: #262626;\n"
+"	border: 1px solid #4d4d4d;\n"
+"}")
 
         self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.pushButton_2)
 
-        self.label_13 = QLabel(self.groupBox_2)
+        self.label_13 = QLabel(self.bakeParameters)
         self.label_13.setObjectName(u"label_13")
 
         self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_13)
 
-        self.horizontalSlider = QSlider(self.groupBox_2)
+        self.horizontalSlider = QSlider(self.bakeParameters)
         self.horizontalSlider.setObjectName(u"horizontalSlider")
+        self.horizontalSlider.setEnabled(True)
+        self.horizontalSlider.setStyleSheet(u"QSlider::groove:horizontal {\n"
+"    border: none;\n"
+"    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */\n"
+"    background: #cccccc;\n"
+"    margin: 2px 0;\n"
+"}\n"
+"\n"
+"QSlider::groove:horizontal:disabled {\n"
+"    background: #666666;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal {\n"
+"    background: #cccccc;\n"
+"    border: none;\n"
+"    width: 10px;\n"
+"    margin: -4px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal:disabled {\n"
+"    background: #666666;\n"
+"}")
         self.horizontalSlider.setOrientation(Qt.Horizontal)
 
         self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.horizontalSlider)
 
-        self.label_14 = QLabel(self.groupBox_2)
+        self.label_14 = QLabel(self.bakeParameters)
         self.label_14.setObjectName(u"label_14")
 
         self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_14)
 
-        self.horizontalSlider_2 = QSlider(self.groupBox_2)
+        self.horizontalSlider_2 = QSlider(self.bakeParameters)
         self.horizontalSlider_2.setObjectName(u"horizontalSlider_2")
+        self.horizontalSlider_2.setEnabled(True)
+        self.horizontalSlider_2.setStyleSheet(u"QSlider::groove:horizontal {\n"
+"    border: none;\n"
+"    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */\n"
+"    background: #cccccc;\n"
+"    margin: 2px 0;\n"
+"}\n"
+"\n"
+"QSlider::groove:horizontal:disabled {\n"
+"    background: #666666;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal {\n"
+"    background: #cccccc;\n"
+"    border: none;\n"
+"    width: 10px;\n"
+"    margin: -4px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal:disabled {\n"
+"    background: #666666;\n"
+"}")
         self.horizontalSlider_2.setOrientation(Qt.Horizontal)
 
         self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.horizontalSlider_2)
 
 
-        self.verticalLayout_7.addWidget(self.groupBox_2)
+        self.verticalLayout_7.addWidget(self.bakeParameters)
 
         self.tableWidget.addTab(self.bakeTab, "")
         self.About = QWidget()
@@ -307,7 +366,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tableWidget.setCurrentIndex(0)
+        self.tableWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -328,9 +387,9 @@ class Ui_Dialog(object):
         self.selectafterimport.setText(QCoreApplication.translate("Dialog", u"Select resources after import", None))
         self.tableWidget.setTabText(self.tableWidget.indexOf(self.importTab), QCoreApplication.translate("Dialog", u"Import", None))
         self.enableBaking.setText(QCoreApplication.translate("Dialog", u"Enable Bake", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"Common Parameters", None))
+        self.bakeParameters.setTitle(QCoreApplication.translate("Dialog", u"Common Parameters", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"Texture Size:", None))
-        self.pushButton.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
+        self.texSize.setText(QCoreApplication.translate("Dialog", u"TextureSize", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Relative to Bouding Box", None))
         self.checkBox.setText("")
         self.label_11.setText(QCoreApplication.translate("Dialog", u"Average Normals", None))

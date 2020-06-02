@@ -19,7 +19,7 @@
      <item>
       <widget class="QTabWidget" name="tableWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="connTab">
         <attribute name="title">
@@ -142,7 +142,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_2">
+          <widget class="QGroupBox" name="bakeParameters">
            <property name="title">
             <string>Common Parameters</string>
            </property>
@@ -161,24 +161,42 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="texSize">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>16777215</height>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
                </size>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	background: #262626;
+	border: 1px solid #4d4d4d;
+}</string>
+              </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>TextureSize</string>
               </property>
              </widget>
             </item>
@@ -225,6 +243,30 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	background: #262626;
+	border: 1px solid #4d4d4d;
+}</string>
+              </property>
               <property name="text">
                <string>PushButton</string>
               </property>
@@ -239,6 +281,33 @@
             </item>
             <item row="3" column="1">
              <widget class="QSlider" name="horizontalSlider">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal {
+    border: none;
+    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+    background: #cccccc;
+    margin: 2px 0;
+}
+
+QSlider::groove:horizontal:disabled {
+    background: #666666;
+}
+
+QSlider::handle:horizontal {
+    background: #cccccc;
+    border: none;
+    width: 10px;
+    margin: -4px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:disabled {
+    background: #666666;
+}</string>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -253,6 +322,33 @@
             </item>
             <item row="4" column="1">
              <widget class="QSlider" name="horizontalSlider_2">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal {
+    border: none;
+    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+    background: #cccccc;
+    margin: 2px 0;
+}
+
+QSlider::groove:horizontal:disabled {
+    background: #666666;
+}
+
+QSlider::handle:horizontal {
+    background: #cccccc;
+    border: none;
+    width: 10px;
+    margin: -4px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:disabled {
+    background: #666666;
+}</string>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
