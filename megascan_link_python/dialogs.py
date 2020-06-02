@@ -10,10 +10,11 @@ import PySide2
 from PySide2 import QtWidgets, QtGui, QtCore
 from PySide2.QtCore import Qt
 
-from .ui import settings_dialog, icon
+from .ui import settings_dialog, icon, painterslider
 from . import config, log, sockets
 
 importlib.reload(settings_dialog)
+importlib.reload(painterslider)
 
 class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 	"""Dialog displayed to the user for editing the plugin settings
@@ -36,7 +37,7 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
 		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
-		self._setControlsStateOfWidget(self.bakeParameters, False)
+		# self._setControlsStateOfWidget(self.bakeParameters, False)
 		menu = QtWidgets.QMenu(self)
 		menu.setFixedWidth(self.texSize.width())
 		menu.addAction("testttt1")
