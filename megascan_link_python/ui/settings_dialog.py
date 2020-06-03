@@ -135,18 +135,15 @@ class Ui_Dialog(object):
 
         self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label_9)
 
-        self.pushButton_2 = PainterDropDown(self.bakeParametersGroup)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.texSize = PainterDropDown(self.bakeParametersGroup)
+        self.texSize.setObjectName(u"texSize")
         sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy1)
-        self.pushButton_2.setMinimumSize(QSize(0, 12))
-        self.pushButton_2.setMaximumSize(QSize(16777215, 12))
-        self.pushButton_2.setBaseSize(QSize(0, 12))
+        sizePolicy1.setHeightForWidth(self.texSize.sizePolicy().hasHeightForWidth())
+        self.texSize.setSizePolicy(sizePolicy1)
 
-        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.pushButton_2)
+        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.texSize)
 
         self.relativeToBoundingBoxLabel = QLabel(self.bakeParametersGroup)
         self.relativeToBoundingBoxLabel.setObjectName(u"relativeToBoundingBoxLabel")
@@ -204,12 +201,12 @@ class Ui_Dialog(object):
 
         self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.antialiasingLabel)
 
-        self.pushButton = PainterDropDown(self.bakeParametersGroup)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy1.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy1)
+        self.aliasingValue = PainterDropDown(self.bakeParametersGroup)
+        self.aliasingValue.setObjectName(u"aliasingValue")
+        sizePolicy1.setHeightForWidth(self.aliasingValue.sizePolicy().hasHeightForWidth())
+        self.aliasingValue.setSizePolicy(sizePolicy1)
 
-        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.pushButton)
+        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.aliasingValue)
 
 
         self.verticalLayout_6.addLayout(self.formLayout_3)
@@ -352,13 +349,13 @@ class Ui_Dialog(object):
         self.enableBaking.setText(QCoreApplication.translate("Dialog", u"Enable Bake", None))
         self.bakeParametersGroup.setTitle(QCoreApplication.translate("Dialog", u"Common Parameters", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"Texture Size", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
+        self.texSize.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
         self.relativeToBoundingBoxLabel.setText(QCoreApplication.translate("Dialog", u"Relative To Bounding Box", None))
         self.averageNormalsLabel.setText(QCoreApplication.translate("Dialog", u"Average Normals", None))
         self.maxRearDistanceLabel.setText(QCoreApplication.translate("Dialog", u"Max Rear Distance", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Max Frontal Distance", None))
         self.antialiasingLabel.setText(QCoreApplication.translate("Dialog", u"Antialiasing", None))
-        self.pushButton.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
+        self.aliasingValue.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
         self.tableWidget.setTabText(self.tableWidget.indexOf(self.bakeTab), QCoreApplication.translate("Dialog", u"Bake", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Megascan Link Plugin (Unofficial)", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Written by <a href=\"https://github.com/darkimage\" style=\"color: #55aaff\">Luca Faggion</a>", None))
