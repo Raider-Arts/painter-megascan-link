@@ -53,7 +53,15 @@ PainterPlugin {
 			alg.log.info("Setting up baking parameters and perform textures baking")
 			var bakingParams = alg.baking.commonBakingParameters()
 			alg.log.info(bakingParams)
-			bakingParams.commonParameters.Output_Size = [12,12]
+			alg.log.info(megascanlink.settings.Bake)
+			var bakeSettings = megascanlink.settings.Bake
+			bakingParams.commonParameters.Output_Size = JSON.parse(bakeSettings.resolution)
+			bakingParams.detailParameters.Average_Normals = Util.checkIfSettingsIsSet(bakeSettings.average)
+			bakingParams.detailParameters.Ignore_Backface = Util.checkIfSettingsIsSet(bakeSettings.ignorebackface)
+			bakingParams.detailParameters.Relative_to_Bounding_Box = Util.checkIfSettingsIsSet(bakeSettings.relative)
+			bakingParams.detailParameters.Max_Rear_Distance = parseFloat(bakeSettings.maxreardistance)
+			bakingParams.detailParameters.Max_Frontal_Distance = parseFloat(bakeSettings.maxfrontaldistance)
+			bakingParams.detailParameters.Antialiasing = megascanlink.settings.Bake.antialiasing
 			bakingParams.detailParameters.High_Definition_Meshes = Util.getHpMeshes(asset)
 			alg.baking.setCommonBakingParameters(bakingParams)
 			alg.baking.bake(alg.texturesets.getActiveTextureSet())
@@ -128,7 +136,9 @@ PainterPlugin {
 			megascanlink.projectCreated = false
 			alg.log.info("Changing texture set [{}] resolution to {}".format(stackPath, 4096))
 			alg.texturesets.setResolution(stackPath, [12,12])
-			megascanlink.setUpAndBake(megascanlink.meshAsset)
+			if(Util.checkIfSettingsIsSet(megascanlink.settings.Bake.enabled)){
+				megascanlink.setUpAndBake(megascanlink.meshAsset)
+			}
 		}
 	}
 
