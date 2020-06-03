@@ -37,8 +37,23 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
 		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
-		self.texSize.setOptions([['128','[7,7]'],['256','[8,8]'],['512','[9,9]'],['1024','[10,10]'],['2048','[11,11]'],['4096','[12,12]'],['8192','[13,13]']])
-		self._setControlsStateOfWidget(self.bakeParametersGroup, True)
+		# =================================================
+		# BAKE PARAMETERS
+		self._setControlsStateOfWidget(self.bakeParametersGroup, config.ConfigSettings.checkIfOptionIsSet("Bake", "enabled"))
+		self.aliasingValue.setOptions(['None', 'Subsampling 2x2', 'Subsampling 4x4', 'Subsampling 8x8'])
+		self.aliasingValue.setSelectedByData(config.ConfigSettings.getConfigSetting("Bake","antialiasing"))
+		self.texSize.setOptions([['128', '[7,7]'], ['256', '[8,8]'], ['512', '[9,9]'], ['1024', '[10,10]'], ['2048', '[11,11]'], ['4096', '[12,12]'], ['8192', '[13,13]']])
+		self.enableBaking.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("Bake", "enabled") else Qt.CheckState.Unchecked)
+		self.enableBaking.stateChanged.connect(self._enableBakeChanged)
+		self.texSize.setSelectedByData(config.ConfigSettings.getConfigSetting("Bake","resolution"))
+		self.maxRearDistanceSlider.setValue(float(config.ConfigSettings.getConfigSetting("Bake", "maxreardistance")))
+		self.maxFrontalDistanceSlider.setValue(float(config.ConfigSettings.getConfigSetting("Bake", "maxfrontaldistance")))
+		self.averageNormalsCheckBox.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("Bake", "average") else Qt.CheckState.Unchecked)
+		self.ignoreBackfaceCheckBox.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("Bake", "ignorebackface") else Qt.CheckState.Unchecked)
+		self.relativeToBoundingBoxCheckBox.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("Bake", "relative") else Qt.CheckState.Unchecked)
+
+	def _enableBakeChanged(self, value):
+		self._setControlsStateOfWidget(self.bakeParametersGroup, value)
 
 	def _setControlsStateOfWidget(self, widget: QtCore.QObject, state: bool):
 		"""Set the state (Enabled/Disabled) of all the children of the input widget
@@ -70,6 +85,20 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		config.ConfigSettings.updateConfigSetting("General", "askcreateproject", askcreateprojectState, False)
 		selectafterimportState = True if self.selectafterimport.checkState() == Qt.CheckState.Checked else False
 		config.ConfigSettings.updateConfigSetting("General", "selectafterimport", selectafterimportState, False)
+		# =================================================
+		# BAKE PARAMETERS
+		enableBakeState = True if self.enableBaking.checkState() == Qt.CheckState.Checked else False
+		config.ConfigSettings.updateConfigSetting("Bake", "enabled", enableBakeState, False)
+		relativeBoundingBoxState = True if self.relativeToBoundingBoxCheckBox.checkState() == Qt.CheckState.Checked else False
+		config.ConfigSettings.updateConfigSetting("Bake", "relative", relativeBoundingBoxState, False)
+		averageNormalsState = True if self.averageNormalsCheckBox.checkState() == Qt.CheckState.Checked else False
+		config.ConfigSettings.updateConfigSetting("Bake", "average", averageNormalsState, False)
+		ignoreBackfaceState = True if self.ignoreBackfaceCheckBox.checkState() == Qt.CheckState.Checked else False
+		config.ConfigSettings.updateConfigSetting("Bake", "ignorebackface", ignoreBackfaceState, False)
+		config.ConfigSettings.updateConfigSetting("Bake", "resolution", self.texSize.getValue())
+		config.ConfigSettings.updateConfigSetting("Bake", "maxfrontaldistance", self.maxFrontalDistanceSlider.getValue())
+		config.ConfigSettings.updateConfigSetting("Bake", "maxreardistance", self.maxRearDistanceSlider.getValue())
+		config.ConfigSettings.updateConfigSetting("Bake", "antialiasing", self.aliasingValue.getValue())
 		config.ConfigSettings.flush()
 		if self.needRestart:
 			self._socketRef.restart()

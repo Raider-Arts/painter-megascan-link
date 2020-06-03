@@ -94,6 +94,7 @@ def start_plugin():
 	iniconf = config.configparser.ConfigParser()
 	iniconf["Connection"] = {"port": "24981", "timeout": "5"}
 	iniconf["General"] = {"outputConsole": "false", "askcreateproject":"true", "selectafterimport": "true"}
+	iniconf["Bake"] = {"enabled": 'false', "resolution": '[12,12]', "maxreardistance": '0.5', "maxfrontaldistance": '0.6', 'average': 'true', 'relative': 'true', 'ignorebackface': 'true', 'antialiasing': 'Subsampling 2x2'}
 	config.ConfigSettings.setUpInitialConfig(iniconf)
 
 	if checkDependencies():
