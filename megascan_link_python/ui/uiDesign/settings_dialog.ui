@@ -196,13 +196,23 @@
                <widget class="QCheckBox" name="averageNormalsCheckBox"/>
               </item>
               <item row="3" column="0">
+               <widget class="QLabel" name="ignoreBackfaceLabel">
+                <property name="text">
+                 <string>Ignore Backface</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QCheckBox" name="ignoreBackfaceCheckBox"/>
+              </item>
+              <item row="4" column="0">
                <widget class="QLabel" name="maxRearDistanceLabel">
                 <property name="text">
                  <string>Max Rear Distance</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="PainterSliderControl" name="maxRearDistanceSlider" native="true">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -224,15 +234,15 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_10">
+              <item row="5" column="0">
+               <widget class="QLabel" name="maxFrontalDistanceLabel">
                 <property name="text">
                  <string>Max Frontal Distance</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
-               <widget class="PainterSliderControl" name="widget" native="true">
+              <item row="5" column="1">
+               <widget class="PainterSliderControl" name="maxFrontalDistanceSlider" native="true">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -253,14 +263,14 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="antialiasingLabel">
                 <property name="text">
                  <string>Antialiasing</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="PainterDropDown" name="aliasingValue">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Maximum">

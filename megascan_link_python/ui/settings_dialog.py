@@ -165,10 +165,20 @@ class Ui_Dialog(object):
 
         self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.averageNormalsCheckBox)
 
+        self.ignoreBackfaceLabel = QLabel(self.bakeParametersGroup)
+        self.ignoreBackfaceLabel.setObjectName(u"ignoreBackfaceLabel")
+
+        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.ignoreBackfaceLabel)
+
+        self.ignoreBackfaceCheckBox = QCheckBox(self.bakeParametersGroup)
+        self.ignoreBackfaceCheckBox.setObjectName(u"ignoreBackfaceCheckBox")
+
+        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.ignoreBackfaceCheckBox)
+
         self.maxRearDistanceLabel = QLabel(self.bakeParametersGroup)
         self.maxRearDistanceLabel.setObjectName(u"maxRearDistanceLabel")
 
-        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.maxRearDistanceLabel)
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.maxRearDistanceLabel)
 
         self.maxRearDistanceSlider = PainterSliderControl(self.bakeParametersGroup)
         self.maxRearDistanceSlider.setObjectName(u"maxRearDistanceSlider")
@@ -180,33 +190,33 @@ class Ui_Dialog(object):
         self.maxRearDistanceSlider.setMinimumSize(QSize(0, 0))
         self.maxRearDistanceSlider.setMaximumSize(QSize(166667, 16777215))
 
-        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.maxRearDistanceSlider)
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.maxRearDistanceSlider)
 
-        self.label_10 = QLabel(self.bakeParametersGroup)
-        self.label_10.setObjectName(u"label_10")
+        self.maxFrontalDistanceLabel = QLabel(self.bakeParametersGroup)
+        self.maxFrontalDistanceLabel.setObjectName(u"maxFrontalDistanceLabel")
 
-        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_10)
+        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.maxFrontalDistanceLabel)
 
-        self.widget = PainterSliderControl(self.bakeParametersGroup)
-        self.widget.setObjectName(u"widget")
-        sizePolicy2.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy2)
-        self.widget.setMinimumSize(QSize(0, 0))
-        self.widget.setMaximumSize(QSize(16777215, 16777215))
+        self.maxFrontalDistanceSlider = PainterSliderControl(self.bakeParametersGroup)
+        self.maxFrontalDistanceSlider.setObjectName(u"maxFrontalDistanceSlider")
+        sizePolicy2.setHeightForWidth(self.maxFrontalDistanceSlider.sizePolicy().hasHeightForWidth())
+        self.maxFrontalDistanceSlider.setSizePolicy(sizePolicy2)
+        self.maxFrontalDistanceSlider.setMinimumSize(QSize(0, 0))
+        self.maxFrontalDistanceSlider.setMaximumSize(QSize(16777215, 16777215))
 
-        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.widget)
+        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.maxFrontalDistanceSlider)
 
         self.antialiasingLabel = QLabel(self.bakeParametersGroup)
         self.antialiasingLabel.setObjectName(u"antialiasingLabel")
 
-        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.antialiasingLabel)
+        self.formLayout_3.setWidget(6, QFormLayout.LabelRole, self.antialiasingLabel)
 
         self.aliasingValue = PainterDropDown(self.bakeParametersGroup)
         self.aliasingValue.setObjectName(u"aliasingValue")
         sizePolicy1.setHeightForWidth(self.aliasingValue.sizePolicy().hasHeightForWidth())
         self.aliasingValue.setSizePolicy(sizePolicy1)
 
-        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.aliasingValue)
+        self.formLayout_3.setWidget(6, QFormLayout.FieldRole, self.aliasingValue)
 
 
         self.verticalLayout_6.addLayout(self.formLayout_3)
@@ -352,8 +362,9 @@ class Ui_Dialog(object):
         self.texSize.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
         self.relativeToBoundingBoxLabel.setText(QCoreApplication.translate("Dialog", u"Relative To Bounding Box", None))
         self.averageNormalsLabel.setText(QCoreApplication.translate("Dialog", u"Average Normals", None))
+        self.ignoreBackfaceLabel.setText(QCoreApplication.translate("Dialog", u"Ignore Backface", None))
         self.maxRearDistanceLabel.setText(QCoreApplication.translate("Dialog", u"Max Rear Distance", None))
-        self.label_10.setText(QCoreApplication.translate("Dialog", u"Max Frontal Distance", None))
+        self.maxFrontalDistanceLabel.setText(QCoreApplication.translate("Dialog", u"Max Frontal Distance", None))
         self.antialiasingLabel.setText(QCoreApplication.translate("Dialog", u"Antialiasing", None))
         self.aliasingValue.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
         self.tableWidget.setTabText(self.tableWidget.indexOf(self.bakeTab), QCoreApplication.translate("Dialog", u"Bake", None))
