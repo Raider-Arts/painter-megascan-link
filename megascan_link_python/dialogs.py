@@ -37,6 +37,7 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 		self.askforproj.setCheckState(Qt.CheckState.Unchecked if config.ConfigSettings.checkIfOptionIsSet("General", "askcreateproject") else Qt.CheckState.Checked)
 		self.logtoconsole.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "outputConsole") else Qt.CheckState.Unchecked)
 		self.selectafterimport.setCheckState(Qt.CheckState.Checked if config.ConfigSettings.checkIfOptionIsSet("General", "selectafterimport") else Qt.CheckState.Unchecked)
+		self.texSize.setOptions([['128','[7,7]'],['256','[8,8]'],['512','[9,9]'],['1024','[10,10]'],['2048','[11,11]'],['4096','[12,12]'],['8192','[13,13]']])
 		self._setControlsStateOfWidget(self.bakeParametersGroup, True)
 
 	def _setControlsStateOfWidget(self, widget: QtCore.QObject, state: bool):
