@@ -50,6 +50,14 @@ class PainterSliderControl(QtWidgets.QWidget):
         self.currvalue = value
         self.lineEdit.setText(str(self.currvalue))
         self.slider.setValue(int(self.currvalue * 100.0))
+
+    def getValue(self) -> float:
+        """Return the current slider value
+
+        :return: The current slider value
+        :rtype: float
+        """        
+        return self.currvalue
     
     def setDisabled(self, state: bool):
         """Reinplementing the setDisabled method
