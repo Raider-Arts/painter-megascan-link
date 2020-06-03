@@ -28,7 +28,6 @@ class PainterSliderControl(QtWidgets.QWidget):
         :type value: int
         """
         self.currvalue = float('%.3f' % (max(float(value) / 100.0 + 0.01, 0.0)))
-        print(f'SLIDER {self.currvalue}')
         self.lineEdit.setText(str(self.currvalue))
 
     def _linkEditValue(self, value: str):
@@ -39,7 +38,6 @@ class PainterSliderControl(QtWidgets.QWidget):
         """        
         if (value == ""):
             value = 0.0
-        print(f'EDIT {self.currvalue}')
         self.currvalue = max(float(value), 0.0)
         self.slider.setValue(int(self.currvalue * 100.0))
 
