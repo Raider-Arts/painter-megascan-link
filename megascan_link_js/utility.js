@@ -22,7 +22,7 @@ function checkIfSettingsIsSet(setting) {
 }
 
 /**
- * Filter the Megascan Asset list removing a speific asset
+ * Filter the Megascan Asset list removing a specific asset
  * @param  {Object} asset the asset to remove
  * @param  {Array} assets the list of asset to filter
  */
