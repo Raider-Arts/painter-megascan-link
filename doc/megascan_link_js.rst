@@ -6,6 +6,10 @@ Utility
 
 	.. js:autofunction:: checkIfSettingsIsSet
 
+	.. js:autofunction:: getHpMeshes
+
+	.. js:autofunction:: removeFromAssets
+
 
 String Extensions
 -----------------
