@@ -1,5 +1,7 @@
-from PySide2 import QtCore, QtGui, QtWidgets
 import re
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
 
 class PainterLineEdit(QtWidgets.QLineEdit):
 	"""QLine Edit widget extension to look an behave like the Substance Painter native one
@@ -7,7 +9,6 @@ class PainterLineEdit(QtWidgets.QLineEdit):
 
 	def __init__(self, text, parent=None):
 		super().__init__(text, parent)
-		print("LINE EDIT PAINTER")
 		self.setAlignment(QtCore.Qt.AlignRight)
 		self.setStyleSheet("""QLineEdit {
 								background: #333333;

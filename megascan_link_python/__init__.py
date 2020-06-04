@@ -4,16 +4,18 @@ import platform
 import subprocess
 import sys
 from pathlib import Path
-from websocket import create_connection
 
 import PySide2
 from PySide2 import QtCore, QtGui, QtWidgets
+from websocket import create_connection
 
 import substance_painter.ui as sbsui
 
-from . import dialogs, log, config, sockets, websocket_link
+from . import config, dialogs, log, sockets
 from . import utilities as util
-from .ui import icon, painterslider, painterslidercontrol, painterlineedit, painterdropdown
+from . import websocket_link
+from .ui import (icon, painterdropdown, painterlineedit, painterslider,
+                 painterslidercontrol)
 
 importlib.reload(icon)
 importlib.reload(dialogs)
@@ -46,9 +48,9 @@ def checkDependencies() -> bool:
 		subprocess.check_call([str(pyInterpreter), "-m", "pip", "install", "--target={}".format(target), "websocket-client"])
 	finally:
 		try:
-			print("Check installed dependecies")
+			log.LoggerLink.Log("Check installed dependecies")
 			import websocket as pd
-			log.LoggerLink.Log("Websocket library is installed: {}".format(pd))
+			log.LoggerLink.Log("Dependencies are installed correctly")
 			return True
 		except ImportError:
 			log.LoggerLink.Log("Dependecies error! cannot start plugin", log.logging.ERROR)
@@ -103,6 +105,7 @@ def start_plugin():
 		# start the sockets
 		Data.socket = sockets.SocketThread(mainWindow)
 		Data.socket.start()
+		log.LoggerLink.Log("Megascan Link Python correctly initialized")
 
 
 def close_plugin():
