@@ -336,7 +336,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tableWidget.setCurrentIndex(2)
+        self.tableWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -371,7 +371,7 @@ class Ui_Dialog(object):
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Megascan Link Plugin (Unofficial)", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Written by <a href=\"https://github.com/darkimage\" style=\"color: #55aaff\">Luca Faggion</a>", None))
         self.label_6.setText(QCoreApplication.translate("Dialog", u"Want to contribute to the plugin?", None))
-        self.label_7.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p>If you would like to contribute to the development of the plugin you should visit the plugin repository on <a href=\"https://github.com/Raider-Arts/megascan-link\"><span style=\" text-decoration: underline; color:#55aaff;\">Github</span></a>.</p><p>If you need to report a bug or request a feature you can do it in the <a href=\"https://github.com/Raider-Arts/megascan-link/issues\"><span style=\" text-decoration: underline; color:#55aaff;\">issues page</span></a> of the repository or by sending a mail to <a href=\"mailto: luc-af@live.it\"><span style=\" text-decoration: underline; color:#55aaff;\">me</span></a> or to my <a href=\"mailto: team@raiderarts.net\"><span style=\" text-decoration: underline; color:#55aaff;\">team</span></a>.</p><p>I hope this plugin was usefull for you.</p><p>Have a great day!.</p></body></html>", None))
+        self.label_7.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p>If you would like to contribute to the development of the plugin you should visit the plugin repository on <a href=\"https://github.com/Raider-Arts/painter-megascan-link\"><span style=\" text-decoration: underline; color:#55aaff;\">Github</span></a>.</p><p>If you need to report a bug or request a feature you can do it in the <a href=\"https://github.com/Raider-Arts/painter-megascan-link/issues\"><span style=\" text-decoration: underline; color:#55aaff;\">issues page</span></a> of the repository or by sending a mail to <a href=\"mailto:luc-af@live.it\"><span style=\" text-decoration: underline; color:#55aaff;\">me</span></a> or to my <a href=\"mailto:team@raiderarts.net\"><span style=\" text-decoration: underline; color:#55aaff;\">team</span></a>.</p><p>I hope this plugin was useful for you.</p><p>Have a great day!.</p></body></html>", None))
         self.tableWidget.setTabText(self.tableWidget.indexOf(self.About), QCoreApplication.translate("Dialog", u"About", None))
         self.helpIcon.setText("")
         self.label_8.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><a href=\"todo add url\"><span style=\" text-decoration: underline; color:#55aaff;\">Help</span></a></p></body></html>", None))

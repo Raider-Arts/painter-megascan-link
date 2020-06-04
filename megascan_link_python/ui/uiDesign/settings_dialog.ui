@@ -19,7 +19,7 @@
      <item>
       <widget class="QTabWidget" name="tableWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="connTab">
         <attribute name="title">
@@ -369,7 +369,7 @@
            <item>
             <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you would like to contribute to the development of the plugin you should visit the plugin repository on &lt;a href=&quot;https://github.com/Raider-Arts/megascan-link&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;If you need to report a bug or request a feature you can do it in the &lt;a href=&quot;https://github.com/Raider-Arts/megascan-link/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;issues page&lt;/span&gt;&lt;/a&gt; of the repository or by sending a mail to &lt;a href=&quot;mailto: luc-af@live.it&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;me&lt;/span&gt;&lt;/a&gt; or to my &lt;a href=&quot;mailto: team@raiderarts.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;team&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;I hope this plugin was usefull for you.&lt;/p&gt;&lt;p&gt;Have a great day!.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you would like to contribute to the development of the plugin you should visit the plugin repository on &lt;a href=&quot;https://github.com/Raider-Arts/painter-megascan-link&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;If you need to report a bug or request a feature you can do it in the &lt;a href=&quot;https://github.com/Raider-Arts/painter-megascan-link/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;issues page&lt;/span&gt;&lt;/a&gt; of the repository or by sending a mail to &lt;a href=&quot;mailto:luc-af@live.it&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;me&lt;/span&gt;&lt;/a&gt; or to my &lt;a href=&quot;mailto:team@raiderarts.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#55aaff;&quot;&gt;team&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;I hope this plugin was useful for you.&lt;/p&gt;&lt;p&gt;Have a great day!.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
