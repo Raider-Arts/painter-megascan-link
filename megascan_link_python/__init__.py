@@ -33,7 +33,7 @@ def checkDependencies() -> bool:
 
 	:return: True if dependecies are present or successfully isntalled, False otherwise
 	:rtype: bool
-	"""    
+	"""
 	try:
 		import websocket as pd
 		log.LoggerLink.Log("Dependecies already satisfied")

@@ -60,7 +60,7 @@ class LoggerLink(object):
 
 		:param msg: the message to print
 		:type msg: str
-		:param logLevel: the log level to print with if it  is lower than the current :attr:`~megascan_link.log.LoggerLink._logger` level it would not be printed, defaults to logging.INFO
+		:param logLevel: the log level to print with if it  is lower than the current :attr:`~megascan_link_python.log.LoggerLink._logger` level it would not be printed, defaults to logging.INFO
 		:type logLevel: int, optional
 		"""		
 		conf = config.ConfigSettings()

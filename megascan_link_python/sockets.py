@@ -23,20 +23,20 @@ class SocketThread(QtCore.QThread):
 	onDataReceived = QtCore.Signal(object)
 	#: flag that indicates that the socket should stop in the next timeout frame
 	#:
-	#: see :meth:`~megascan_link.sockets.SocketThread.stop`
+	#: see :meth:`~megascan_link_python.sockets.SocketThread.close`
 	#: 
 	#: .. warning::
-	#:      dont use this flag directly use instead the :meth:`~megascan_link.sockets.SocketThread.stop` methods
+	#:      dont use this flag directly use instead the :meth:`~megascan_link_python.sockets.SocketThread.close` methods
 	shouldClose = False
 	#: flag that indicates that a restart is been requested, the restart is processed in the next timeout frame,
 	#: it is cleared (False) when the restart happen
 	#:
 	#: used for example if you want to change the listening port or the timeout duration
 	#:
-	#: see :meth:`~megascan_link.sockets.SocketThread.restart`
+	#: see :meth:`~megascan_link_python.sockets.SocketThread.restart`
 	#:
 	#: .. warning::
-	#:      dont use this flag directly use instead the :meth:`~megascan_link.sockets.SocketThread.restart` method instead
+	#:      dont use this flag directly use instead the :meth:`~megascan_link_python.sockets.SocketThread.restart` method instead
 	shouldRestart = False
 	#: variables that idicates if the socket has been started
 	#:
@@ -46,7 +46,7 @@ class SocketThread(QtCore.QThread):
 	def run(self):
 		"""This is the method that manages the socket lifetime process
 
-		To interact with the socket use the :meth:`~megascan_link.sockets.SocketThread.stop` and :meth:`~megascan_link.sockets.SocketThread.restart` method instead
+		To interact with the socket use the :meth:`~megascan_link_python.sockets.SocketThread.close` and :meth:`~megascan_link_python.sockets.SocketThread.restart` method instead
 
 		While this method is running the associated thread is kept alive **closing** the socket without requesting a **restart** will make this thread close too
 
@@ -124,7 +124,7 @@ class SocketThread(QtCore.QThread):
 
 	def _tryCloseSocket(self, sock) -> bool:
 		"""Internal method used for testing if the socket should be closed
-		based on the :attr:`~megascan_link.sockets.SocketThread.shouldClose` flag
+		based on the :attr:`~megascan_link_python.sockets.SocketThread.shouldClose` flag
 		
 		if it possible the socket is closed
 
@@ -154,6 +154,6 @@ class SocketThread(QtCore.QThread):
 		"""Set the needed flags to close the socket
 
 		.. note::
-			The close operatiob is performed only after the timeout duration
+			The close operation is performed only after the timeout duration
 		"""       
 		self.shouldClose = True
