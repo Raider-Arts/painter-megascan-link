@@ -1,4 +1,4 @@
-megascan\_link\_python package
+Megascan Link Python Package
 ==============================
 
 Subpackages
@@ -11,7 +11,7 @@ Subpackages
 Submodules
 ----------
 
-megascan\_link\_python.config module
+Config Module
 ------------------------------------
 
 .. automodule:: megascan_link_python.config
@@ -19,7 +19,7 @@ megascan\_link\_python.config module
    :undoc-members:
    :show-inheritance:
 
-megascan\_link\_python.dialogs module
+Dialogs Module
 -------------------------------------
 
 .. automodule:: megascan_link_python.dialogs
@@ -27,7 +27,7 @@ megascan\_link\_python.dialogs module
    :undoc-members:
    :show-inheritance:
 
-megascan\_link\_python.log module
+Log Module
 ---------------------------------
 
 .. automodule:: megascan_link_python.log
@@ -35,7 +35,7 @@ megascan\_link\_python.log module
    :undoc-members:
    :show-inheritance:
 
-megascan\_link\_python.sockets module
+Sockets Module
 -------------------------------------
 
 .. automodule:: megascan_link_python.sockets
@@ -43,7 +43,7 @@ megascan\_link\_python.sockets module
    :undoc-members:
    :show-inheritance:
 
-megascan\_link\_python.utilities module
+Utilities Module
 ---------------------------------------
 
 .. automodule:: megascan_link_python.utilities
@@ -51,7 +51,7 @@ megascan\_link\_python.utilities module
    :undoc-members:
    :show-inheritance:
 
-megascan\_link\_python.websocket\_link module
+Websocket Link Module
 ---------------------------------------------
 
 .. automodule:: megascan_link_python.websocket_link
