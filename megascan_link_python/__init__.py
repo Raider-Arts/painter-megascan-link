@@ -28,7 +28,19 @@ importlib.reload(painterlineedit)
 importlib.reload(painterdropdown)
 
 def checkDependencies() -> bool:
-	"""Check if dependencies are installed if not tries to install them (it is platform dependent??)
+	"""Check if dependencies are installed if not tries to install them
+
+	This function is platform dependent
+
+	.. warning::
+		**WARNING FOR LINUX USERS**, they should set the sudo command to execute without password for the python executable of Substance Painter by
+		editing the sudoers file (``sudo visudo``) adding this line below ``root ALL=(ALL) ALL``
+
+		``username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3``
+
+		where username is the user that want to install this plugin.
+
+		refer to the :ref:`(LINUX) Install the plugin` user guide for more details.
 
 	:return: True if dependecies are present or successfully isntalled, False otherwise
 	:rtype: bool
@@ -42,13 +54,12 @@ def checkDependencies() -> bool:
 		target = None
 		cmdCall = []
 		if platform.system() == "Windows":
-			print("Adding dependecies Windows")
 			pyInterpreter = Path(os.__file__).parent.parent / "python.exe"
 			target = str(pyInterpreter.parent / "lib/site-packages/")
 			cmdCall = [str(pyInterpreter)]
 		elif platform.system() == "Linux":
 			# =================================================
-			# WARNING FOR LINUX USERS, they should set the sudo commandt to execute without password for the python executable of Substance Painter
+			# WARNING FOR LINUX USERS, they should set the sudo commandd to execute without password for the python executable of Substance Painter
 			# editing the visudo file adding this line below root ALL=(ALL) ALL
 			# username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3
 			# where username is the user that want to install this plugin
@@ -96,8 +107,9 @@ def createToolBar():
 	action.triggered.connect(openSettingsDialog)
 
 def start_plugin():
-	print("HELOO")
-	"""**Entry point** of the plugin
+	"""**Entry point** of the plugin.
+
+	Here we set up all the needed fucntionalities like the log the socket thread and we add to the painter toolbar the user interface ation
 	"""
 	# =================================================
 	# Get reference to qt window of substance painter
@@ -126,7 +138,9 @@ def start_plugin():
 
 
 def close_plugin():
-	"""**exit point** of the plugin
+	"""**Exit point** of the plugin.
+
+	Here we perform the clean up before closing the plugin, stopping the socket thread and removing the toolbar action
 	"""
 	Data.socket.close()
 	mainWindow = sbsui.get_main_window()

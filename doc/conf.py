@@ -31,7 +31,7 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-	'sphinx_js', 'sphinx.ext.autodoc', 'sphinx_rtd_theme', 'recommonmark', 'sphinx_markdown_tables', 'breathe'
+	'sphinx_js', 'sphinx.ext.autodoc', 'sphinx_rtd_theme', 'recommonmark', 'sphinx_markdown_tables', 'breathe','sphinx.ext.autosectionlabel'
 ]
 
 # Source files suffixes

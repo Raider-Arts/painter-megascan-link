@@ -1,10 +1,10 @@
-megascan\_link\_python.ui package
+Ui package
 =================================
 
-Submodules
-----------
+JS Submodules
+--------------
 
-megascan\_link\_python.ui.icon module
+Icon Module
 -------------------------------------
 
 .. automodule:: megascan_link_python.ui.icon
@@ -12,17 +12,8 @@ megascan\_link\_python.ui.icon module
    :undoc-members:
    :show-inheritance:
 
-megascan\_link\_python.ui.settings\_dialog module
--------------------------------------------------
-
-.. automodule:: megascan_link_python.ui.settings_dialog
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-Module contents
----------------
+Ui Module contents
+-------------------
 
 .. automodule:: megascan_link_python.ui
    :members:

@@ -1,15 +1,15 @@
 Megascan Link Python Package
 ==============================
 
-Subpackages
------------
+Python Subpackages
+--------------------
 
 .. toctree::
 
    megascan_link_python.ui
 
-Submodules
-----------
+Python Submodules
+-------------------
 
 Config Module
 ------------------------------------
@@ -60,8 +60,8 @@ Websocket Link Module
    :show-inheritance:
 
 
-Module contents
----------------
+Plugin Module contents
+-----------------------
 
 .. automodule:: megascan_link_python
    :members:
