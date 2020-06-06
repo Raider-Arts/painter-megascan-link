@@ -37,18 +37,29 @@ def checkDependencies() -> bool:
 		import websocket as pd
 		log.LoggerLink.Log("Dependecies already satisfied")
 	except ImportError:
+		print("Adding dependecies")
 		pyInterpreter = None
 		target = None
+		cmdCall = []
 		if platform.system() == "Windows":
+			print("Adding dependecies Windows")
 			pyInterpreter = Path(os.__file__).parent.parent / "python.exe"
 			target = str(pyInterpreter.parent / "lib/site-packages/")
+			cmdCall = [str(pyInterpreter)]
 		elif platform.system() == "Linux":
+			# =================================================
+			# WARNING FOR LINUX USERS, they should set the sudo commandt to execute without password for the python executable of Substance Painter
+			# editing the visudo file adding this line below root ALL=(ALL) ALL
+			# username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3
+			# where username is the user that want to install this plugin
 			pyInterpreter = Path(os.__file__).parent.parent.parent / "bin" / "python3"
 			target = str(pyInterpreter.parent.parent / "lib")
+			cmdCall = ["sudo", str(pyInterpreter)]
 		else:
 			log.LoggerLink.Log("Current Platform {} is not supported".format(platform.system()), log.logging.ERROR)
 		try:
-			subprocess.check_call([str(pyInterpreter), "-m", "pip", "install", "websocket-client"])
+			cmdCall += ["-m", "pip", "install", "websocket-client"]
+			subprocess.check_call(cmdCall)
 		except Exception as e:
 			log.LoggerLink.Log("Error during pip command: {}".format(e), log.logging.ERROR)
 	finally:
