@@ -33,17 +33,6 @@ def checkDependencies() -> bool:
 	:return: True if dependecies are present or successfully isntalled, False otherwise
 	:rtype: bool
 	"""
-	print(Path(os.__file__))
-	print(Path(os.__file__).parent.parent.parent / "bin" / "python3")
-	print((Path(os.__file__).parent.parent.parent / "bin" / "python3").exists())
-	print((Path(os.__file__).parent.parent.parent / "bin" / "python3").parent.parent)
-	print(platform.system())
-
-	pyInterpreter = Path(os.__file__).parent.parent.parent / "bin" / "python3"
-	target = str(pyInterpreter.parent.parent / "lib")
-	subprocess.check_call([str(pyInterpreter), "-m", "pip", "install", "websocket-client"])
-
-	# return False
 	try:
 		import websocket as pd
 		log.LoggerLink.Log("Dependecies already satisfied")
@@ -51,14 +40,17 @@ def checkDependencies() -> bool:
 		pyInterpreter = None
 		target = None
 		if platform.system() == "Windows":
-			pyInterpreter = Path(os.__file__).parent.parent.parent / "python.exe"
+			pyInterpreter = Path(os.__file__).parent.parent / "python.exe"
 			target = str(pyInterpreter.parent / "lib/site-packages/")
 		elif platform.system() == "Linux":
 			pyInterpreter = Path(os.__file__).parent.parent.parent / "bin" / "python3"
 			target = str(pyInterpreter.parent.parent / "lib")
 		else:
 			log.LoggerLink.Log("Current Platform {} is not supported".format(platform.system()), log.logging.ERROR)
-		subprocess.check_call([str(pyInterpreter), "-m", "pip", "install", "--target={}".format(target), "websocket-client"])
+		try:
+			subprocess.check_call([str(pyInterpreter), "-m", "pip", "install", "websocket-client"])
+		except Exception as e:
+			log.LoggerLink.Log("Error during pip command: {}".format(e), log.logging.ERROR)
 	finally:
 		try:
 			log.LoggerLink.Log("Check installed dependecies")
