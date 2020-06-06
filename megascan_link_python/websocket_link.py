@@ -1,4 +1,3 @@
-from websocket import create_connection
 import PySide2
 from PySide2 import QtWidgets, QtGui, QtCore
 from . import log, config
@@ -8,6 +7,8 @@ class WebsocketLink(QtCore.QObject):
 	"""Start up a single use websocket to send data over the JS plugin
 	"""	
 	def __init__(self, parent=None):
+		from websocket import create_connection
+		self._create_connection = create_connection
 		super().__init__(parent=parent)
 
 	def sendDataToJs(self, data: object):
@@ -17,7 +18,7 @@ class WebsocketLink(QtCore.QObject):
 		:type data: object
 		"""
 		try:
-			ws = create_connection("ws://localhost:1212/")
+			ws = self._create_connection("ws://localhost:1212/")
 			log.LoggerLink.Log("Sending data to JS plugin")
 			jsonData = {"data": data,
 						"settings": config.ConfigSettings.getAsDict()}
