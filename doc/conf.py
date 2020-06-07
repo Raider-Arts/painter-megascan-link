@@ -61,7 +61,16 @@ breathe_projects_source = {
 
 breathe_default_members = ('members', 'undoc-members')
 
-breathe_doxygen_config_options = {'GENERATE_XML': 'YES', "EXTENSION_MAPPING" : "qml=C++", "FILTER_PATTERNS": "*.qml=doxyqml", "FILE_PATTERNS" : "*.qml"}
+breathe_doxygen_config_options = {"GENERATE_XML": "YES",
+								"EXTENSION_MAPPING": "qml=C++",
+								"FILTER_PATTERNS": "*.qml=doxyqml",
+								"FILE_PATTERNS": "*.qml",
+								"PREDEFINED": "Q_PROPERTY(x)=x;",
+								"MACRO_EXPANSION": "YES",
+								"ENABLE_PREPROCESSING": "YES",
+								"MACRO_EXPANSION ": "YES",
+								"EXPAND_ONLY_PREDEF": "YES",
+								"EXPAND_ONLY_PREDEF": "YES"}
 
 # -- Options for HTML output -------------------------------------------------
 
