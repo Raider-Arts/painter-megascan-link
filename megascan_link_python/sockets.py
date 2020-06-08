@@ -72,7 +72,7 @@ class SocketThread(QtCore.QThread):
 				sock.bind(server_address)
 				self.started = True
 			except Exception:
-				logger.Log("Failed to start up socket .... retrying",INFO)
+				logger.Log("Failed to start up socket .... retrying", DEBUG)
 				time.sleep(1)
 
 		if not self.started:
@@ -84,10 +84,10 @@ class SocketThread(QtCore.QThread):
 				break
 			# Wait for a connection
 			try:
-				logger.Log('waiting for a connection',DEBUG)
+				logger.Log('Waiting for a connection',DEBUG)
 				self._receivedData = io.StringIO()
 				self._connection, client_address = sock.accept()
-				logger.Log('connection from {}'.format(client_address), DEBUG)
+				logger.Log('Connection from {}'.format(client_address), DEBUG)
 				# Receive the data in small chunks and gather it until there is no more
 				while True:
 					if self._tryCloseSocket(sock):
@@ -96,10 +96,10 @@ class SocketThread(QtCore.QThread):
 					if data:
 						self._receivedData.write(data.decode("utf-8"))
 					else:
-						logger.Log('no more data from {}'.format(client_address), DEBUG)
+						logger.Log('No more data from {}'.format(client_address), DEBUG)
 						break
 			except socket.timeout:
-				logger.Log("socket timeout", DEBUG)
+				logger.Log("Socket timeout", DEBUG)
 			else:
 				# Clean up the connection
 				data = self._receivedData.getvalue()
@@ -135,7 +135,7 @@ class SocketThread(QtCore.QThread):
 		"""
 		if self.shouldClose:
 			logger = log.LoggerLink()
-			logger.Log("closing socket",INFO)
+			logger.Log("Closing socket",INFO)
 			sock.close()
 			return True
 		else:
