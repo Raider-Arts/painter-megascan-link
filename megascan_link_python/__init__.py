@@ -42,7 +42,7 @@ def checkDependencies() -> bool:
 
 		refer to the :ref:`(LINUX) Install the plugin` user guide for more details.
 
-	:return: True if dependecies are present or successfully isntalled, False otherwise
+	:return: True if dependecies are present or successfully installed, False otherwise
 	:rtype: bool
 	"""
 	try:
@@ -131,7 +131,7 @@ def start_plugin():
 	if checkDependencies():
 		createToolBar()
 		# =================================================
-		# start the sockets
+		# start the socket
 		Data.socket = sockets.SocketThread(mainWindow)
 		Data.socket.start()
 		log.LoggerLink.Log("Megascan Link Python correctly initialized")
