@@ -80,5 +80,8 @@ class LoggerLink(object):
 			lvl = "DEBUG"
 			cls._logger.debug(msg)
 		if conf.checkIfOptionIsSet("General", "outputConsole"):
-			if logLevel >= cls._logger.level:
-				print("[{}][{}] {}".format(cls._name,lvl,msg))
+			print("[{}][{}] {}".format(cls._name, lvl, msg))
+		elif logLevel > logging.DEBUG:
+			# =================================================
+			# Always print to console INFO WARNING and ERROR
+			print("[{}][{}] {}".format(cls._name,lvl,msg))
