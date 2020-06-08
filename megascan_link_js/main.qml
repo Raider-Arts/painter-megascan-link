@@ -16,6 +16,7 @@ PainterPlugin {
 	property var settings: {}
 	/** type:Object the current Megascan 3D asset used in the project */
 	property var meshAsset: {}
+
 	/**
 	* Simply indicates that the plugin has been loaded correctly
 	*/
@@ -46,7 +47,7 @@ PainterPlugin {
 
 	/**
 	* Set up the baking parameters based on the user config preset parameters and then perform the bake
-	* @param type:Object asset the asset to retrive the bake data
+	* @param type:Object asset the asset to retrive the bake data from
 	*/
 	function setUpAndBake(asset){
 		if((Object.keys(asset).length !== 0)) {
@@ -128,7 +129,10 @@ PainterPlugin {
 		return { hasMeshes: hasMesh, count: count, lastMesh: mesh, data: data}
 	}
 
-
+	/**
+	* Used to set up the textures set resolution and channel if a new project is being create by this plugin
+	* Also set up and started, if requested in the config file, the baking process
+	*/
 	onActiveTextureSetChanged: function(stackPath) {
 		// Called after the active texture set stack changes, 'activeTextureSetStack' contains the new active stack path.
 		// The stack path may be empty if no texture set stack is active. This can happen when closing a project.
@@ -151,6 +155,14 @@ PainterPlugin {
 		listen: true
 		port: 1212
 
+		/**
+		* This is the core of this plugin in which we receinve the data from the Python plugin the data we receive is a JSON object
+		* containing the Quixel bridge data and the plugin setting retrived from the config file
+		* ``` DATA {
+			data: QuixelBridge json data
+			settings: Config File json data
+		}'''
+		*/
 		onClientConnected: {
 			alg.log.info("Megascan-link-python plugin connection established");
 			// The clientConnected signal is called with a webSocket object in parameter that represents
@@ -176,6 +188,11 @@ PainterPlugin {
 		}
 	}
 
+	/**
+	* Dialog showed to the user when the plugin can't save the current opened project
+	*
+	* This happens for example when the users as project opened that has not been saved to disk
+	*/
 	AlgDialog {
 		id: saveError
 		title: "ERROR Could not save current project"
@@ -205,11 +222,14 @@ PainterPlugin {
 		onAccepted: saveError.close()
 	}
 
+	/**
+	* Instance of AlgSelectDialog, this dialog is used for starting a new project with the mesh selected by the user from a list of
+	* meshes in the megascan data currently being imported, if the are none or only one 3D mesh this dialog is not showed
+	*/
 	AlgSelectDialog {
 		id: selectMesh
 
 		onAccepted: {
-			alg.log.info("Accepted")
 			var meshAsset = assets.get(currentIndex).data
 			var imports = []
 			for (let i = 0; i < assets.count; i++) {
@@ -222,6 +242,14 @@ PainterPlugin {
 
 	}
 
+	/**
+	* Instance of AlgNewProject, this dialog is showed to the user if there is a 3D Mesh in the currently imported data.
+	*
+	* As Substance Painter only supports a single mesh per project we ask the user if he want to create a new project with the
+	* the data he is currently importing.
+	*
+	* This dialog can be suppressed with the config option `askcreateproject` to `False`
+	*/
 	AlgNewProject {
 		id: createProject
 
