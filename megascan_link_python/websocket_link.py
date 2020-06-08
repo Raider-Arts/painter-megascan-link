@@ -1,3 +1,6 @@
+"""Module containing classes used to send data over the JS Plugin
+"""
+
 import PySide2
 from PySide2 import QtWidgets, QtGui, QtCore
 from . import log, config
