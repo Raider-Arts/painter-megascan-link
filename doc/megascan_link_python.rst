@@ -11,6 +11,14 @@ Python Subpackages
 Python Submodules
 -------------------
 
+Plugin Module contents
+-----------------------
+
+.. automodule:: megascan_link_python
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Config Module
 ------------------------------------
 
@@ -55,15 +63,6 @@ Websocket Link Module
 ---------------------------------------------
 
 .. automodule:: megascan_link_python.websocket_link
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-Plugin Module contents
------------------------
-
-.. automodule:: megascan_link_python
    :members:
    :undoc-members:
    :show-inheritance:

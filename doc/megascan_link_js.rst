@@ -1,5 +1,5 @@
-Megascan Link JS (Javascript)
-==============================
+Megascan Link Javascript Package
+================================
 
 Utility
 ----------
