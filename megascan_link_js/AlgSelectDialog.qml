@@ -7,21 +7,41 @@ import AlgWidgets 2.0
 import QtQuick.Layouts 1.12
 import "utility.js" as Util 
 
-
+/**
+* This dialog is presented to the user if, when creating a new project, there is more than one 3D Mesh asset in the
+* import data.
+*
+* This dialogs allow the user to select a 3D Asset to use a the base mesh for the new project, if there are other 3D Assets only
+* their bitmaps are imported.
+*/
 AlgDialog {
 	id: selectDialog
+	/** The tile of the dialog */
 	title: "Select Megascan Asset Mesh for New Project"
+	/** width of the dialog -size if fixed to `400x300` */
 	width: 400
+	/** height of the dialog -size if fixed to `400x300` */
 	height: 300
+	/** is set to be equal to the `height` variable this blocks the user to resize the dialog*/
 	maximumHeight: height
+	/** is set to be equal to the `width` variable this blocks the user to resize the dialog*/
 	maximumWidth: width
+	/** is set to be equal to the `height` variable this blocks the user to resize the dialog*/
 	minimumHeight: height
+	/** is set to be equal to the `width` variable this blocks the user to resize the dialog*/
 	minimumWidth: width
+	/** the accept button text of the dialog - default is `Select` */
 	defaultButtonText: "Select"
 
+	/** type:Object the list of 3d assets */
 	property var assets: assetList
-	property var currentIndex: assetListView.currentIndex
+	/** type:int the current index selected in the list */
+	property int currentIndex: assetListView.currentIndex
 
+	/**
+	* Add assets to the list widgets of the dialog
+	* @param type:List the list of assets to add
+	*/
 	function addAssets(assets){
 		assetList.clear()
 		assets.forEach(asset => {
@@ -29,11 +49,18 @@ AlgDialog {
 		})
 	}
 
+	/** 
+	* Shorthand function to open the dialog and populate the asset list
+	* @param type:List the list of assets to add to the dialog list
+	*/
 	function openWithAssets(assets) {
 		selectDialog.addAssets(assets)
 		selectDialog.open()
 	}
 
+	/** 
+	* The List widget (ListView QML)
+	*/
 	ListView {
 		parent: selectMesh.contentItem
 		id: assetListView
@@ -49,11 +76,12 @@ AlgDialog {
 		ScrollBar.vertical: AlgScrollBar {}
 	}
 	
-
+	/** The model of the list, it holds the data needed to populate the widget */
 	ListModel {
 		id: assetList
 	}
 
+	/** The header of the list */
 	Component {
 		id: headerList
 		Rectangle {
@@ -73,10 +101,10 @@ AlgDialog {
 		}
 	}
 
+	/** This is component instanciated for each entry in the model (*assetList*)*/
 	Component {
 		id: assetListDelegate
 		Item {
-			id: rowListLayout
 			width: parent.width
 			height: 72
 			RowLayout {
