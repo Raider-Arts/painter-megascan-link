@@ -1,13 +1,13 @@
 {
-	"description": "This is a sample plugin",
-	"url": "https://www.substance3d.com",
+	"description": "Megascan link for substance painter, allow to import assets from Quixel Maegascans",
+	"url": "https://github.com/Raider-Arts/painter-megascan-link",
 	"version": "0.1.0",
 	"license": "<a href=\"https://opensource.org/licenses/MIT\">MIT</a>",
 	"third_parties": [
 		{
-			"name": "Foo",
-			"description": "this is the description of Foo",
-			"homepage_url": "https://www.substance3d.com",
+			"name": "Megascan Link JS",
+			"description": "Allow to import assets from Quixel Maegascans, needs the counterpart Megascan Link Python plugin",
+			"homepage_url": "https://github.com/Raider-Arts/painter-megascan-link",
 			"license_url": "https://opensource.org/licenses/MIT"
 		}
 	]
