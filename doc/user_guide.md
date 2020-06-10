@@ -19,11 +19,41 @@ You can download the plugin in the [realease](https://github.com/Raider-Arts/meg
 
 ## Install the Plugin
 
-The plugin is divided in two separated packages that work togheter to import the resource from [Quixel Bridge][quixelbridge] to [Substance Painter][sbspainter]
+The plugin is divided in two separated packages that work togheter to import the resources from [Quixel Bridge][quixelbridge] to [Substance Painter][sbspainter]
 
-To install them 
+To install them unzip the archive in the Substance Painter Document directory that is located in:
 
-## (WINDOWS) Install Notes
+```eval_rst
+.. note::
+    **For Windows 10**
+    ``%userprofile%\Documents\Allegorithmic\Substance Painter``
+    or 
+    ``%userprofile%\OneDrive\Documents\Allegorithmic\Substance Painter``
+
+.. note::
+    **For Linux**
+    ``~/Documents/Allegorithmic/Substance Painter``
+
+.. note::
+    **For MacOS**
+    ``/Users/%username%/Docuemnts/Allegorithmic/Substance Painter``
+```
+
+If you want to install it by hand simply place respectively:
+
+- the `megascan_link_python` folder to `%substance painter documents path%\python\plugins\` folder
+- the `megascan_link_js` folder to `%substance painter documents path%\plugins\` folder
+
+```eval_rst
+.. note::
+    if you had Substance Painter opened during the installation you should not be able to see the plugins listed to fix it 
+    simply click ``Reload Plugin Folder`` for both the Python plugin and the Javascript plugin
+```
+
+```eval_rst
+.. warning::
+    **The plugins packages work together so both plugins should be enabled on Substance Painter!**
+```
 
 ## (LINUX) Install Notes
 
@@ -37,11 +67,10 @@ To install them
     where username is the user that want to install this plugin.
 ```
 
-I'm not a expert linux user so if are one and want to contribute to make the linux dependencie installation easier and better please head take a look
+I'm not a expert linux user so if are one and want to contribute to make the linux dependencies installation easier and better please take a look
 at the [dependencies installation function][dependecies_linux] for the linux platform.
 
-Ideally for linux users would be to ask for the sudo password and pass it to the command using [``subprocess.Popen``][popen_doc] or even better not asking at
-all for a password (but i think that on linux this is probably not possible)
+Ideally for linux users would be better to ask for the sudo password and pass it to the dependencies install command using [``subprocess.Popen``][popen_doc] or even better not asking at all for a password (but i think that, on linux, this is probably not possible)
 
 [quixelbridge]: https://quixel.com/bridge
 [sbspainter]: https://www.substance3d.com/products/substance-painter/
