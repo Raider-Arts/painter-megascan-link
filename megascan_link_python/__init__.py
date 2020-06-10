@@ -40,7 +40,7 @@ def checkDependencies() -> bool:
 
 		where username is the user that want to install this plugin.
 
-		refer to the :ref:`(LINUX) Install the plugin` user guide for more details.
+		refer to the :ref:`(LINUX) Install Notes` user guide for more details.
 
 	:return: True if dependecies are present or successfully installed, False otherwise
 	:rtype: bool
