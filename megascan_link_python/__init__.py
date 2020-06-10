@@ -33,7 +33,7 @@ def checkDependencies() -> bool:
 	This function is platform dependent
 
 	.. warning::
-		**WARNING FOR LINUX USERS**, they should set the sudo command to execute without password for the python executable of Substance Painter by
+		**WARNING FOR LINUX  USERS**, they should set the sudo command to execute without password for the python executable of Substance Painter by
 		editing the sudoers file (``sudo visudo``) adding this line below ``root ALL=(ALL) ALL``
 
 		``username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3``
@@ -41,6 +41,12 @@ def checkDependencies() -> bool:
 		where username is the user that want to install this plugin.
 
 		refer to the :ref:`(LINUX) Install Notes` user guide for more details.
+
+		** WARNING FOR MAC USERS**, they should do the same but the string is
+		``username ALL=(ALL) NOPASSWD: /Applications/Substance\ Painter.app/Contents/Resources/pythonsdk/bin/python3``
+		**NOTE the backward slash for escaping the space between Substance and Painter**
+
+		refer to the :ref:`(MACOS) Install Notes` user guide for more details.
 
 	:return: True if dependecies are present or successfully installed, False otherwise
 	:rtype: bool
@@ -55,19 +61,23 @@ def checkDependencies() -> bool:
 		cmdCall = []
 		if platform.system() == "Windows":
 			pyInterpreter = Path(os.__file__).parent.parent / "python.exe"
-			target = str(pyInterpreter.parent / "lib/site-packages/")
 			cmdCall = [str(pyInterpreter)]
-		elif platform.system() == "Linux":
+		elif platform.system() == "Linux" or platform.system() == "Darwin" :
 			# =================================================
 			# WARNING FOR LINUX USERS, they should set the sudo commandd to execute without password for the python executable of Substance Painter
 			# editing the visudo file adding this line below root ALL=(ALL) ALL
 			# username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3
 			# where username is the user that want to install this plugin
+			#
+			# WARNING FOR MAC USERS, they should do the same but the string is
+			# username ALL=(ALL) NOPASSWD: /Applications/Substance\ Painter.app/Contents/Resources/pythonsdk/bin/python3
+			# NOTE the backward slash for escaping the space between Substance and Painter
+
 			pyInterpreter = Path(os.__file__).parent.parent.parent / "bin" / "python3"
-			target = str(pyInterpreter.parent.parent / "lib")
 			cmdCall = ["sudo", str(pyInterpreter)]
 		else:
 			log.LoggerLink.Log("Current Platform {} is not supported".format(platform.system()), log.logging.ERROR)
+			return False
 		try:
 			cmdCall += ["-m", "pip", "install", "websocket-client"]
 			subprocess.check_call(cmdCall)
