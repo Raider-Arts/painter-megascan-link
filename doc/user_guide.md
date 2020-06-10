@@ -36,7 +36,7 @@ To install them unzip the archive in the Substance Painter Document directory th
 
 .. note::
     **For MacOS**
-    ``/Users/%username%/Docuemnts/Allegorithmic/Substance Painter``
+    ``/Users/%username%/Documents/Allegorithmic/Substance Painter``
 ```
 
 If you want to install it by hand simply place respectively:
@@ -70,7 +70,24 @@ If you want to install it by hand simply place respectively:
 I'm not a expert linux user so if are one and want to contribute to make the linux dependencies installation easier and better please take a look
 at the [dependencies installation function][dependecies_linux] for the linux platform.
 
-Ideally for linux users would be better to ask for the sudo password and pass it to the dependencies install command using [``subprocess.Popen``][popen_doc] or even better not asking at all for a password (but i think that, on linux, this is probably not possible)
+Ideally for linux users would be better to ask for the sudo password and pass it to the dependencies install command using [``subprocess.Popen``][popen_doc] or even better not 
+asking at all for a password (but i think that, on linux, this is probably not possible)
+
+## (MACOS) Install notes
+
+```eval_rst
+.. warning::
+    MacOS users should set the sudo command to execute without password for the python executable of Substance Painter by
+    editing the sudoers file (``sudo visudo``) adding this line below ``%admin ALL=(ALL) ALL``
+
+    ``username ALL=(ALL) NOPASSWD: /Applications/Substance\ Painter.app/Contents/Resources/pythonsdk/bin/python3``
+
+    **NOTE the backward slash for escaping the space between Substance and Painter**
+
+    where username is the user that want to install this plugin.
+```
+
+And again here like :ref:`(LINUX) Install Notes` if you want to improve the resource installation feel free to do so! head over the [dependencies installation function][dependecies_linux] for the code reference.
 
 [quixelbridge]: https://quixel.com/bridge
 [sbspainter]: https://www.substance3d.com/products/substance-painter/
