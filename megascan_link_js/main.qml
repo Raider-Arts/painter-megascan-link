@@ -36,7 +36,7 @@ PainterPlugin {
 		data.forEach(asset => {
 			asset.components.forEach(bitmap => {
 				var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"Megascan/{}".format(asset.name)))
-				alg.log.info(urls[lenght-1])
+				alg.log.info("Resource: {} imported correctly".format(urls[lenght-1]))
 			})
 		})
 		// select the assets in the browser if the user want it
@@ -53,8 +53,6 @@ PainterPlugin {
 		if((Object.keys(asset).length !== 0)) {
 			alg.log.info("Setting up baking parameters and perform textures baking")
 			var bakingParams = alg.baking.commonBakingParameters()
-			alg.log.info(bakingParams)
-			alg.log.info(megascanlink.settings.Bake)
 			var bakeSettings = megascanlink.settings.Bake
 			bakingParams.commonParameters.Output_Size = JSON.parse(bakeSettings.resolution)
 			bakingParams.detailParameters.Average_Normals = Util.checkIfSettingsIsSet(bakeSettings.average)
@@ -64,6 +62,9 @@ PainterPlugin {
 			bakingParams.detailParameters.Max_Frontal_Distance = parseFloat(bakeSettings.maxfrontaldistance)
 			bakingParams.detailParameters.Antialiasing = megascanlink.settings.Bake.antialiasing
 			bakingParams.detailParameters.High_Definition_Meshes = Util.getHpMeshes(asset)
+			if(bakingParams.detailParameters.High_Definition_Meshes.length == 0){
+				alg.log.warning("No High Poly meshes found in {} asset, the baking process can be unsuccessful!".format(asset.name));
+			}
 			alg.baking.setCommonBakingParameters(bakingParams)
 			alg.baking.bake(alg.texturesets.getActiveTextureSet())
 		}
@@ -106,6 +107,7 @@ PainterPlugin {
 			megascanlink.projectCreated = true
 			// set the current project mesh asset 
 			megascanlink.meshAsset = asset
+			alg.log.info("Project created successfully")
 		}
 	}
 
