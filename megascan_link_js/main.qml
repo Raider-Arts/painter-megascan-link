@@ -35,7 +35,7 @@ PainterPlugin {
 		var urls = []
 		data.forEach(asset => {
 			asset.components.forEach(bitmap => {
-				var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"Megascan/{}".format(asset.name)))
+				var lenght = urls.push(alg.resources.importProjectResource(bitmap.path,["texture"],"Megascan/{}({})".format(asset.name, asset.id)))
 				alg.log.info("Resource: {} imported correctly".format(urls[lenght-1]))
 			})
 		})
