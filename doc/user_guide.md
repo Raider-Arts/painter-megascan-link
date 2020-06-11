@@ -73,7 +73,7 @@ at the [dependencies installation function][dependecies_linux] for the linux pla
 Ideally for linux users would be better to ask for the sudo password and pass it to the dependencies install command using [``subprocess.Popen``][popen_doc] or even better not 
 asking at all for a password (but i think that, on linux, this is probably not possible)
 
-## (MACOS) Install notes
+## (MacOS) Install notes
 
 ```eval_rst
 .. warning::
