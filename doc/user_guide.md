@@ -89,6 +89,26 @@ asking at all for a password (but i think that, on linux, this is probably not p
 
 And again here like :ref:`(LINUX) Install Notes` if you want to improve the resource installation feel free to do so! head over the [dependencies installation function][dependecies_linux] for the code reference.
 
+## Manual Dependencies Installation
+In the case you can't manage to get the automatic dependencies installation working, you can install them yourself
+
+- **Windows installation steps**
+    > - open a terminal (`win+r` then write `cmd` and press enter)
+    > - navigate to the Substance Painter Python installation folder
+    `cd %pathtoSubtancePainter%\resources\pythonsdk`
+    > - install the dependencies with the command `python.exe -m pip install websocket-client`
+    > - verify the installation with the command `python.exe -m pip freeze`, in the output should be present this line `websocket-client=0.x.x`
+
+- **Linux installation steps**
+    > - open a terminal and navigate to `/opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin`
+    > - install the dependencies with the command `sudo python3 -m pip install websocket-client`
+    > - verify the installation with the command `sudo python3 -m pip freeze`, in the output should be present this line `websocket-client=0.x.x`
+
+- **MacOS installation steps**
+    > - open a terminal and navigate to `/Applications/Substance Painter.app/Contents/Resources/pythonsdk/bin`
+    > - install the dependencies with the command `sudo python3 -m pip install websocket-client`
+    > - verify the installation with the command `sudo python3 -m pip freeze`, in the output should be present this line `websocket-client=0.x.x`
+
 [quixelbridge]: https://quixel.com/bridge
 [sbspainter]: https://www.substance3d.com/products/substance-painter/
 [dependecies_linux]: https://github.com/Raider-Arts/painter-megascan-link/blob/master/megascan_link_python/__init__.py#L60
