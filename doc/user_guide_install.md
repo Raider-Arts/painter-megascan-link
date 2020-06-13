@@ -1,4 +1,4 @@
-# How to Install the plugin
+# How to Install
 
 ## Download the plugin
 

@@ -4,7 +4,8 @@ User Guides
 .. toctree::
    :maxdepth: 4
 
-   user_guide
+   user_guide_install
+   user_guide_usage
 
 
 Developer Docs
