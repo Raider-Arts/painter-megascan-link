@@ -180,10 +180,14 @@ PainterPlugin {
 				}else if(alg.project.isOpen()){
 					megascanlink.importResources(data)
 				}else{
-					if(meshCheck.count > 1){
-						selectMesh.openWithAssets(data)
-					}else {
-						megascanlink.createProjectWithResources(meshCheck.lastMesh, Util.removeFromAssets(meshCheck.lastMesh, data))
+					if(meshCheck.hasMeshes){
+						if(meshCheck.count > 1){
+							selectMesh.openWithAssets(data)
+						}else {
+							megascanlink.createProjectWithResources(meshCheck.lastMesh, Util.removeFromAssets(meshCheck.lastMesh, data))
+						}
+					}else{
+						alg.log.warning("No project open and no 3D meshes found in the import data, cannot import assets!!")
 					}
 				}
 			});
