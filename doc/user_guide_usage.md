@@ -1,8 +1,15 @@
 # How to Use
 
 ## Basic Usage
+In this gif is shown how to import Megascan Assets in an already opened project
 
 ## Features
+
+### Create new project
+You can create a new project by exporting from Quixel bridge an asset that contains a 3D Mesh.
+
+### Select meshes
+When creating a new project if you exported from Quixel bridge multiple assets contianing a 3D Mesh you can select which one use as a base mesh inside Substance Painter, the rest of the assets is imported as resources.
 
 ## Plugin Settings
 Here is the list of settings the plugin exposes
