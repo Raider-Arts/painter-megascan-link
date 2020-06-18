@@ -1,0 +1,41 @@
+---
+name: "pre-release"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Set release name"
+        run: |
+          export RELEASE_NAME="${{ github.event.repository.name }}-dev"
+          echo "::set-env name=NAME::$RELEASE_NAME"
+        
+      - name: "Build"
+        if: success()
+        run: |
+          cd $GITHUB_WORKSPACE
+          mkdir plugins
+          mv LICENSE plugins/
+          mkdir python
+          mkdir python/plugins
+          mv LICENSE python/plugins/
+          mv megascan_link_js/ plugins/
+          mv megascan_link_python/ python/plugins/
+          zip -r "${{ env.NAME }}.zip" python plugins
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        if: success()
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: ${{ env.NAME }}.zip
