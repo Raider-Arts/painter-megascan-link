@@ -121,14 +121,16 @@ PainterPlugin {
 		var hasMesh = false
 		var count = 0
 		var mesh = {}
+		var meshes = []
 		data.forEach(asset => {
 			if(asset.type == "3d" || asset.type == "3dplant"){
 				hasMesh = true
 				count += 1
 				mesh = asset
+				meshes.push(asset)
 			}
 		})
-		return { hasMeshes: hasMesh, count: count, lastMesh: mesh, data: data}
+		return { hasMeshes: hasMesh, count: count, lastMesh: mesh, meshes: meshes,  data: data}
 	}
 
 	/**
@@ -182,7 +184,7 @@ PainterPlugin {
 				}else{
 					if(meshCheck.hasMeshes){
 						if(meshCheck.count > 1){
-							selectMesh.openWithAssets(data)
+							selectMesh.openWithAssets(meshCheck)
 						}else {
 							megascanlink.createProjectWithResources(meshCheck.lastMesh, Util.removeFromAssets(meshCheck.lastMesh, data))
 						}
@@ -237,13 +239,7 @@ PainterPlugin {
 
 		onAccepted: {
 			var meshAsset = assets.get(currentIndex).data
-			var imports = []
-			for (let i = 0; i < assets.count; i++) {
-				const asset = assets.get(i).data;
-				imports.push(asset)
-			}
-			imports.splice(currentIndex,1)
-			megascanlink.createProjectWithResources(meshAsset,imports)
+			megascanlink.createProjectWithResources(meshAsset, Util.removeFromAssets(importData.lastMesh, importData.data))
 		}
 
 	}
@@ -267,7 +263,7 @@ PainterPlugin {
 		onNewProjectPressed : {
 			if(importData.count > 1){
 				selectMesh.open()
-				selectMesh.addAssets(importData.data)
+				selectMesh.addAssets(importData)
 			}else{
 				megascanlink.createProjectWithResources(importData.lastMesh, Util.removeFromAssets(importData.lastMesh, importData.data))
 			}

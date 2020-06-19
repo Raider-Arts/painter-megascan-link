@@ -35,6 +35,8 @@ AlgDialog {
 
 	/** type:Object the list of 3d assets */
 	property var assets: assetList
+	/** type:Object the list of 3d assets */
+	property var importData: {}
 	/** type:int the current index selected in the list */
 	property int currentIndex: assetListView.currentIndex
 
@@ -42,9 +44,10 @@ AlgDialog {
 	* Add assets to the list widgets of the dialog
 	* @param type:List the list of assets to add
 	*/
-	function addAssets(assets){
+	function addAssets(assetsIn){
 		assetList.clear()
-		assets.forEach(asset => {
+		importData = assetsIn
+		importData.meshes.forEach(asset => {
 			assetList.append({name: "{} (id:{})".format(asset.name, asset.id), image: asset.previewImage, data: asset})
 		})
 	}
@@ -53,8 +56,8 @@ AlgDialog {
 	* Shorthand function to open the dialog and populate the asset list
 	* @param type:List the list of assets to add to the dialog list
 	*/
-	function openWithAssets(assets) {
-		selectDialog.addAssets(assets)
+	function openWithAssets(assetsIn) {
+		selectDialog.addAssets(assetsIn)
 		selectDialog.open()
 	}
 
