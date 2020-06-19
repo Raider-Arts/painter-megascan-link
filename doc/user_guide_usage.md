@@ -3,13 +3,27 @@
 ## Basic Usage
 In this gif is shown how to import Megascan Assets in an already opened project
 
+![painter import](_static/simple_import.gif)
+
+```eval_rst 
+.. note::
+    **Be sure to change the NORMAL MAP to the Correct COLOR SPACE which is OPENGL**
+
+   .. image:: _static/color_space.gif
+```
+
 ## Features
 
 ### Create new project
 You can create a new project by exporting from Quixel bridge an asset that contains a 3D Mesh.
 
+![create project](_static/project_creation.gif)
+
 ### Select meshes
 When creating a new project if you exported from Quixel bridge multiple assets contianing a 3D Mesh you can select which one use as a base mesh inside Substance Painter, the rest of the assets is imported as resources.
+
+![select mesh](_static/select_mesh.gif)
+
 
 ## Plugin Settings
 Here is the list of settings the plugin exposes
@@ -40,6 +54,8 @@ This options are applied to every import of Megascan Assets
 
  ### Bake option
 Enabling this option allow the plugin to perform a bake, with the preset values, after a successful import and project creation.
+
+![bake import](_static/bake_import.gif)
 
 The bake is performed only when creating a new project (**New Project** pressed during the import, if there is an already project open, or when importing a Megascan Asset containing a 3D Mesh when there is no project open).
 

@@ -14,8 +14,8 @@ For a complete guide on all the options of the plugin refere to the [How to use 
 	- **For Linux** ``~/Documents/Allegorithmic/Substance Painter``
 	- **For MacOS** ``/Users/%username%/Documents/Allegorithmic/Substance Painter``
 
-    > :information_source: After you have extracted the archive open up Substance Painter and enable both plugins python 
-	> ![enable plugins](doc/_static/enable_plugins.jpg)
+> :information_source: After you have extracted the archive open up Substance Painter and enable both plugins python 
+> ![enable plugins](doc/_static/enable_plugins.jpg)
 
  - Select a Megascan Asset you want to export then setup Quixel Bridge to the correct export option and then click Export (Default plugin port is **24981**)
 
