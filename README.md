@@ -11,7 +11,7 @@ This plugin enable the import of Megascan Assets using the Custom Socket Export 
 
 For a complete guide on all the options of the plugin refere to the [How to use documentation](https://painter-megascan-link.readthedocs.io/en/latest/?badge=latest).
 
- - Download the plugin from the [Release Page](https://github.com/Raider-Arts/painter-megascan-link/releases) or you can [build it yourself](todoaddlink.todo)
+ - Download the plugin from the [Release Page](https://github.com/Raider-Arts/painter-megascan-link/releases)
 
  - Install it in Substance Painter by exctracting the zip file in the documents folder:
 
@@ -44,8 +44,14 @@ In this other video you can see how to you can automatically create a project im
 
 ![create project](doc/_static/project_creation.gif)
 
+## Auto bake on project creation
+Here you can see that enabling the bake option in the plguin allow to perform and automatic baking when creating a project using a 3D Mesh (The high polygons meshes are automatically searched and if found they are used as HP meshes reference during the bake)
+
+![bake project](doc/_static/bake_import.gif)
+
+
 ## Want to contribute?
-If you are willing to contribute you should start by [reading the dev docs](https://megascan-link.readthedocs.io/en/latest/).
+If you are willing to contribute you should start by [reading the dev docs](https://painter-megascan-link.readthedocs.io/en/latest/).
 
 **Done it?** all right it's time to clone this repository and start coding !!
 
