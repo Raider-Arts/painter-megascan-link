@@ -9,7 +9,7 @@ This plugin enable the import of Megascan Assets using the Custom Socket Export 
 
 ## Quick start guide
 
-For a complete guide on all the options of the plugin refere to the [How to use documentation](https://painter-megascan-link.readthedocs.io/en/latest/?badge=latest).
+For a complete guide on all the options of the plugin refere to the [How to use documentation](https://painter-megascan-link.readthedocs.io/en/latest/user_guide_usage.html).
 
  - Download the plugin from the [Release Page](https://github.com/Raider-Arts/painter-megascan-link/releases)
 
