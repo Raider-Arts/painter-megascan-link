@@ -56,7 +56,4 @@ If you are willing to contribute you should start by [reading the dev docs](http
 **Done it?** all right it's time to clone this repository and start coding !!
 
 After you made your changes don't forget to test them!! 
-
-And please i'm trying to keep this plugin without any external dependencies for the ease of usage for everyone! so try to rely on what the already build-in python installation of Substance Designer has to offer
-
 I hope this plugin helped you. 
