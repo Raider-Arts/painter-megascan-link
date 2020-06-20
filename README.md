@@ -1,5 +1,7 @@
 
 # Substance Painter Megascan Link Plugin ![painterversion](https://img.shields.io/badge/painter%20version-2020.1.2%20(6.1.2)-green) ![Tag Release](https://github.com/Raider-Arts/painter-megascan-link/workflows/Tag%20Release/badge.svg) ![pre-release](https://github.com/Raider-Arts/painter-megascan-link/workflows/pre-release/badge.svg)
+<img src="doc/_static/logo.gif" style="display:block;float:none;margin-left:auto;margin-right:auto;"> 
+
 This plugin enable the import of Megascan Assets using the export feature of [Quixel Bridge](https://quixel.com/bridge)
 
 ## Quick start guide
