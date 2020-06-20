@@ -13,7 +13,7 @@ For a complete guide on all the options of the plugin refere to the [How to use 
 
  - Download the plugin from the [Release Page](https://github.com/Raider-Arts/painter-megascan-link/releases)
 
- - Install it in Substance Painter by exctracting the zip file in the documents folder:
+ - Install it in Substance Painter by extracting the zip file in the documents folder:
 
 	- **For Windows 10** ``%userprofile%\Documents\Allegorithmic\Substance Painter``
 	- **For Linux** ``~/Documents/Allegorithmic/Substance Painter``
