@@ -5,7 +5,7 @@
   <img width="320" height="180" src="doc/_static/logo.gif">
 </p>
 
-This plugin enable the import of Megascan Assets using the export feature of [Quixel Bridge](https://quixel.com/bridge)
+This plugin enable the import of Megascan Assets using the Custom Socket Export feature of [Quixel Bridge](https://quixel.com/bridge)
 
 ## Quick start guide
 
