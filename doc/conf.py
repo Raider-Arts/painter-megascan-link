@@ -88,6 +88,10 @@ html_static_path = ['_static']
 #css style
 html_css_files = ['style.css']
 
+#logo
+#Logo
+html_logo = '_static/logo_big.gif'
+
 # -- Autostructify -------------------------------------------------
 
 def setup(app):
