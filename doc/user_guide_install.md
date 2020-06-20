@@ -2,7 +2,7 @@
 
 ## Download the plugin
 
-You can download the plugin in the [realease](https://github.com/Raider-Arts/megascan-link/releases) tab of the github project page
+You can download the plugin in the [realease](https://github.com/Raider-Arts/painter-megascan-link/releases) tab of the github project page
 
 ##### Build types
 
