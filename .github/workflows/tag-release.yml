@@ -23,10 +23,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           mkdir plugins
-          mv LICENSE plugins/
           mkdir python
           mkdir python/plugins
-          mv LICENSE python/plugins/
           mv megascan_link_js/ plugins/
           mv megascan_link_python/ python/plugins/
           zip -r "${{ env.NAME }}.zip" python plugins
