@@ -5,16 +5,18 @@ and then converted to python code using the buildDialogs.py script
 """
 
 import importlib
+import webbrowser
 
 import PySide2
-from PySide2 import QtWidgets, QtGui, QtCore
+from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import Qt
 
-from .ui import settings_dialog, icon, painterslider
 from . import config, log, sockets
+from .ui import error_dialog, icon, painterslider, settings_dialog
 
 importlib.reload(settings_dialog)
 importlib.reload(painterslider)
+importlib.reload(error_dialog)
 
 class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 	"""Dialog displayed to the user for editing the plugin settings
@@ -104,3 +106,44 @@ class SettingsDialog(QtWidgets.QDialog, settings_dialog.Ui_Dialog):
 			self._socketRef.restart()
 		self.close()
 
+
+class DependencyErrorDialog(QtWidgets.QDialog, error_dialog.Ui_Dialog):
+	"""
+	Generic Error dialog for displaying error messages
+	"""
+	def __init__(self, parent, helpLink = None):
+		super().__init__(parent=parent)
+		self.helpLink = helpLink
+		self.setupUi(self)
+		self.descriptionLabel.setOpenExternalLinks(True)
+		for btn in self.buttonBox.buttons():
+			if (btn.text() == "Help"):
+				btn.setFocus()
+				btn.clicked.connect(self.openHelp)
+			else:
+				btn.clicked.connect(self.close)
+
+	def close(self):
+		"""
+		Close the dialog and updates the ini file if necessary
+		"""		
+		dontShowAgainState = True if self.dontShowAgain.checkState() != Qt.CheckState.Checked else False
+		config.ConfigSettings.updateConfigSetting("General", "showDependencyError", dontShowAgainState, False)
+		config.ConfigSettings.flush()
+		super().close()
+
+	def show(self):
+		"""
+		Shows the error dialog only if the users has not checked before the "don't show again" checkbox
+		"""		
+		if (config.ConfigSettings.checkIfOptionIsSet("General", "showDependencyError", 'True')):
+			super().show()
+
+	def openHelp(self):
+		"""
+		Summon a browser with the documentation page opened
+		"""		
+		if (self.helpLink):
+			webbrowser.open(self.helpLink)
+		else:
+			self.close()
