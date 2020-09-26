@@ -94,7 +94,6 @@ def checkDependencies() -> bool:
 			subprocess.check_call(cmdCall)
 		except Exception as e:
 			log.LoggerLink.Log("Error during pip command: {}".format(e), log.logging.ERROR)
-			showErrorDialog()
 	finally:
 		try:
 			log.LoggerLink.Log("Check installed dependecies")
@@ -103,6 +102,7 @@ def checkDependencies() -> bool:
 			return True
 		except ImportError:
 			log.LoggerLink.Log("Dependecies error! cannot start plugin", log.logging.ERROR)
+			showErrorDialog()
 			return False
 
 class Data(object):
