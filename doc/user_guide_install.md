@@ -93,7 +93,7 @@ And again here like :ref:`(LINUX) Install Notes` if you want to improve the reso
 In the case you can't manage to get the automatic dependencies installation working, you can install them yourself
 
 - **Windows installation steps**
-    > - open a terminal (`win+r` then write `cmd` and press enter)
+    > - run a terminal as an **administrator**, press the start button write `cmd` right click `Command Prompt` and select `Run as an administrator`
     > - navigate to the Substance Painter Python installation folder
     `cd %pathtoSubtancePainter%\resources\pythonsdk`
     > - install the dependencies with the command `python.exe -m pip install websocket-client`
