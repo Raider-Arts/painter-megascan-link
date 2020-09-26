@@ -97,7 +97,7 @@ class ConfigSettings(object):
 				cls.config.write(configFile)
 
 	@classmethod
-	def getConfigSetting(cls, cat: str, prop: str) -> str:
+	def getConfigSetting(cls, cat: str, prop: str, fallback="") -> str:
 		"""Helper function to retrive a config propriety value.
 
 		:param cat: Category name string
@@ -108,8 +108,7 @@ class ConfigSettings(object):
 		:rtype: str
 		"""
 		cls.checkConfigState()
-		# return cls.config[cat][prop]
-		return cls.config.get(cat, prop, fallback="")
+		return cls.config.get(cat, prop, fallback=fallback)
 	
 	@classmethod
 	def getConfigCategory(cls, cat: str) -> dict:
@@ -149,7 +148,7 @@ class ConfigSettings(object):
 				config.write(configFile)
 
 	@classmethod
-	def checkIfOptionIsSet(cls, cat: str, prop: str) -> bool:
+	def checkIfOptionIsSet(cls, cat: str, prop: str, fallback="") -> bool:
 		"""Helper function that will check if a propriety of a section is set or not by confronting
 		it with the following values ["true", "yes", "y", "ok"]
 
@@ -160,7 +159,7 @@ class ConfigSettings(object):
 		:return: if the propriety is set returns True, False otherwise
 		:rtype: bool
 		"""        
-		if cls.getConfigSetting(cat, prop).lower() in ["true", "yes", "y", "ok"]:
+		if cls.getConfigSetting(cat, prop, fallback).lower() in ["true", "yes", "y", "ok"]:
 			return True
 		return False
 
