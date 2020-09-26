@@ -27,6 +27,17 @@ importlib.reload(painterslidercontrol)
 importlib.reload(painterlineedit)
 importlib.reload(painterdropdown)
 
+
+def showErrorDialog():
+	"""Opens the error dialog showing to the user that something went wrong during the installation of the needed dependencies.
+	
+	And guiding the user to the manual dependecies installation guide on the documentation website
+	"""	
+	mainWindow = sbsui.get_main_window()
+	dialog = dialogs.DependencyErrorDialog(mainWindow, "https://painter-megascan-link.readthedocs.io/en/latest/user_guide_install.html#manual-dependencies-installation")
+	dialog.show()
+
+
 def checkDependencies() -> bool:
 	"""Check if dependencies are installed if not tries to install them
 
@@ -83,6 +94,7 @@ def checkDependencies() -> bool:
 			subprocess.check_call(cmdCall)
 		except Exception as e:
 			log.LoggerLink.Log("Error during pip command: {}".format(e), log.logging.ERROR)
+			showErrorDialog()
 	finally:
 		try:
 			log.LoggerLink.Log("Check installed dependecies")
@@ -124,7 +136,6 @@ def start_plugin():
 	# =================================================
 	# Get reference to qt window of substance painter
 	mainWindow = sbsui.get_main_window()
-
 	# =================================================
 	# Init the logger
 	log.LoggerLink.setLoggerName("megascanlink")
@@ -134,7 +145,7 @@ def start_plugin():
 	config.ConfigSettings.setIniFilePath("settings")
 	iniconf = config.configparser.ConfigParser()
 	iniconf["Connection"] = {"port": "24981", "timeout": "5"}
-	iniconf["General"] = {"outputConsole": "false", "askcreateproject":"true", "selectafterimport": "true"}
+	iniconf["General"] = {"outputConsole": "false", "askcreateproject":"true", "selectafterimport": "true", "showDependencyError": "true"}
 	iniconf["Bake"] = {"enabled": 'false', "resolution": '[12,12]', "maxreardistance": '0.5', "maxfrontaldistance": '0.6', 'average': 'true', 'relative': 'true', 'ignorebackface': 'true', 'antialiasing': 'Subsampling 2x2'}
 	config.ConfigSettings.setUpInitialConfig(iniconf)
 
