@@ -34,6 +34,14 @@ For a complete guide on all the options of the plugin refere to the [How to use 
 
  	![color space](doc/_static/color_space.gif)
 
+## Need Help?
+You can always open an [issue](https://github.com/Raider-Arts/painter-megascan-link/issues) here on github or [write me a mail](mailto:luc-af@live.it) or write in this forums threads:
+
+- [Polycount Forum](https://polycount.com/discussion/220704/substance-painter-megascan-link-plugin)
+- [Quixel Forum](https://help.quixel.com/hc/en-us/community/posts/360012105958-Megascan-Link-plugin-for-Substance-Painter)
+
+# Examples
+
 ## Import assets into project example
 In this short video you can see how to import Megascan Assets from Quixel Bridge to a Substance Painter project using the Plugin
 
@@ -48,7 +56,6 @@ In this other video you can see how to you can automatically create a project im
 Here you can see that enabling the bake option in the plguin allow to perform and automatic baking when creating a project using a 3D Mesh (The high polygons meshes are automatically searched and if found they are used as HP meshes reference during the bake)
 
 ![bake project](doc/_static/bake_import.gif)
-
 
 ## Want to contribute?
 If you are willing to contribute you should start by [reading the dev docs](https://painter-megascan-link.readthedocs.io/en/latest/).
