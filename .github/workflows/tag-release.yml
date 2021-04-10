@@ -14,6 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "Set release name"
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
           export RELEASE_NAME="${{ github.event.repository.name }}-${GITHUB_REF/refs\/tags\//}"
           echo "::set-env name=NAME::$RELEASE_NAME"
