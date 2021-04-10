@@ -7,6 +7,9 @@
 
 This plugin enable the import of Megascan Assets using the Custom Socket Export feature of [Quixel Bridge](https://quixel.com/bridge)
 
+# New version notes
+> **The manual installation starting from version v0.3.0-beta and later are NO LONGER REQUIRED** so you should be able to use the plugin just by installing it with no additional actions.
+
 ## Quick start guide
 
 For a complete guide on all the options of the plugin refere to the [How to use documentation](https://painter-megascan-link.readthedocs.io/en/latest/user_guide_usage.html).

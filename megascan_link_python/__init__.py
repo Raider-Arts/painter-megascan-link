@@ -37,74 +37,6 @@ def showErrorDialog():
 	dialog = dialogs.DependencyErrorDialog(mainWindow, "https://painter-megascan-link.readthedocs.io/en/latest/user_guide_install.html#manual-dependencies-installation")
 	dialog.show()
 
-
-def checkDependencies() -> bool:
-	"""Check if dependencies are installed if not tries to install them
-
-	This function is platform dependent
-
-	.. warning::
-		**WARNING FOR LINUX  USERS**, they should set the sudo command to execute without password for the python executable of Substance Painter by
-		editing the sudoers file (``sudo visudo``) adding this line below ``root ALL=(ALL) ALL``
-
-		``username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3``
-
-		where username is the user that want to install this plugin.
-
-		refer to the :ref:`(LINUX) Install Notes` user guide for more details.
-
-		** WARNING FOR MAC USERS**, they should do the same but the string is
-		``username ALL=(ALL) NOPASSWD: /Applications/Substance\ Painter.app/Contents/Resources/pythonsdk/bin/python3``
-		**NOTE the backward slash for escaping the space between Substance and Painter**
-
-		refer to the :ref:`(MACOS) Install Notes` user guide for more details.
-
-	:return: True if dependecies are present or successfully installed, False otherwise
-	:rtype: bool
-	"""
-	try:
-		import websocket as pd
-		log.LoggerLink.Log("Dependecies already satisfied")
-	except ImportError:
-		print("Adding dependecies")
-		pyInterpreter = None
-		target = None
-		cmdCall = []
-		if platform.system() == "Windows":
-			pyInterpreter = Path(os.__file__).parent.parent / "python.exe"
-			cmdCall = [str(pyInterpreter)]
-		elif platform.system() == "Linux" or platform.system() == "Darwin" :
-			# =================================================
-			# WARNING FOR LINUX USERS, they should set the sudo commandd to execute without password for the python executable of Substance Painter
-			# editing the visudo file adding this line below root ALL=(ALL) ALL
-			# username ALL=(ALL) NOPASSWD: /opt/Allegorithmic/Substance_Painter/resources/pythonsdk/bin/python3
-			# where username is the user that want to install this plugin
-			#
-			# WARNING FOR MAC USERS, they should do the same but the string is
-			# username ALL=(ALL) NOPASSWD: /Applications/Substance\ Painter.app/Contents/Resources/pythonsdk/bin/python3
-			# NOTE the backward slash for escaping the space between Substance and Painter
-
-			pyInterpreter = Path(os.__file__).parent.parent.parent / "bin" / "python3"
-			cmdCall = ["sudo", str(pyInterpreter)]
-		else:
-			log.LoggerLink.Log("Current Platform {} is not supported".format(platform.system()), log.logging.ERROR)
-			return False
-		try:
-			cmdCall += ["-m", "pip", "install", "websocket-client"]
-			subprocess.check_call(cmdCall)
-		except Exception as e:
-			log.LoggerLink.Log("Error during pip command: {}".format(e), log.logging.ERROR)
-	finally:
-		try:
-			log.LoggerLink.Log("Check installed dependecies")
-			import websocket as pd
-			log.LoggerLink.Log("Dependencies are installed correctly")
-			return True
-		except ImportError:
-			log.LoggerLink.Log("Dependecies error! cannot start plugin", log.logging.ERROR)
-			showErrorDialog()
-			return False
-
 class Data(object):
 	"""Dataclass used to store references to items so they dont get garbage collected
 	"""    
@@ -149,13 +81,13 @@ def start_plugin():
 	iniconf["Bake"] = {"enabled": 'false', "resolution": '[12,12]', "maxreardistance": '0.5', "maxfrontaldistance": '0.6', 'average': 'true', 'relative': 'true', 'ignorebackface': 'true', 'antialiasing': 'Subsampling 2x2'}
 	config.ConfigSettings.setUpInitialConfig(iniconf)
 
-	if checkDependencies():
-		createToolBar()
-		# =================================================
-		# start the socket
-		Data.socket = sockets.SocketThread(mainWindow)
-		Data.socket.start()
-		log.LoggerLink.Log("Megascan Link Python correctly initialized")
+	# if checkDependencies():
+	createToolBar()
+	# =================================================
+	# start the socket
+	Data.socket = sockets.SocketThread(mainWindow)
+	Data.socket.start()
+	log.LoggerLink.Log("Megascan Link Python correctly initialized")
 
 
 def close_plugin():

@@ -10,8 +10,8 @@ class WebsocketLink(QtCore.QObject):
 	"""Start up a single use websocket to send data over the JS plugin
 	"""	
 	def __init__(self, parent=None):
-		from websocket import create_connection
-		self._create_connection = create_connection
+		from . import websocket
+		self._create_connection = websocket.create_connection
 		super().__init__(parent=parent)
 
 	def sendDataToJs(self, data: object):
