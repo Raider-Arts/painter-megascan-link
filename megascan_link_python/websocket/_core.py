@@ -30,7 +30,7 @@ import struct
 import threading
 import time
 
-import six
+from . import six
 
 # websocket modules
 from ._abnf import *

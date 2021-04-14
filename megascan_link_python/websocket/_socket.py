@@ -26,7 +26,7 @@ import errno
 import select
 import socket
 
-import six
+from . import six
 import sys
 
 from ._exceptions import *

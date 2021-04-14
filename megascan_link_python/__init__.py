@@ -50,7 +50,7 @@ def openSettingsDialog():
 	dialog = dialogs.SettingsDialog(Data.socket,mainWindow)
 	dialog.show()
 
-def createToolBar():
+def createToolBar(): 
 	"""Creates the toolbar containing the action to open the Settings Dialog
 	"""    
 	Data.toolbar = sbsui.add_toolbar("Megscan Link", "megascanlink")

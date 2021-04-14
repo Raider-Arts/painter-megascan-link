@@ -26,7 +26,7 @@ import array
 import os
 import struct
 
-import six
+from . import six
 
 from ._exceptions import *
 from ._utils import validate_utf8

@@ -23,7 +23,7 @@ import os
 import socket
 import sys
 
-import six
+from . import six
 
 from ._exceptions import *
 from ._logging import *

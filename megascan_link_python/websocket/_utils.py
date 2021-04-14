@@ -18,7 +18,7 @@ Copyright (C) 2010 Hiroki Ohtani(liris)
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-import six
+from . import six
 
 __all__ = ["NoLock", "validate_utf8", "extract_err_message", "extract_error_code"]
 

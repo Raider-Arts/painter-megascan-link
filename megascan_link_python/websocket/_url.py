@@ -26,7 +26,7 @@ import os
 import socket
 import struct
 
-from six.moves.urllib.parse import urlparse
+from . import six
 
 
 __all__ = ["parse_url", "get_proxy_info"]
@@ -47,7 +47,7 @@ def parse_url(url):
 
     scheme, url = url.split(":", 1)
 
-    parsed = urlparse(url, scheme="ws")
+    parsed = six.moves.urllib.parse.urlparse(url, scheme="ws")
     if parsed.hostname:
         hostname = parsed.hostname
     else:
@@ -171,7 +171,7 @@ def get_proxy_info(
     for key in env_keys:
         value = os.environ.get(key, None)
         if value:
-            proxy = urlparse(value)
+            proxy = six.moves.urllib.parse.urlparse(value)
             auth = (proxy.username, proxy.password) if proxy.username else None
             return proxy.hostname, proxy.port, auth
 

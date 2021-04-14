@@ -22,7 +22,7 @@ import hashlib
 import hmac
 import os
 
-import six
+from . import six
 
 from ._cookiejar import SimpleCookieJar
 from ._exceptions import *

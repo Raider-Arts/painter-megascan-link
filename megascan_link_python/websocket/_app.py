@@ -29,7 +29,7 @@ import threading
 import time
 import traceback
 
-import six
+from . import six
 
 from ._abnf import ABNF
 from ._core import WebSocket, getdefaulttimeout
