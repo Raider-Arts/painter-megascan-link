@@ -18,9 +18,9 @@ For a complete guide on all the options of the plugin refere to the [How to use 
 
  - Install it in Substance Painter by extracting the zip file in the documents folder:
 
-	- **For Windows 10** ``%userprofile%\Documents\Allegorithmic\Substance Painter``
-	- **For Linux** ``~/Documents/Allegorithmic/Substance Painter``
-	- **For MacOS** ``/Users/%username%/Documents/Allegorithmic/Substance Painter``
+	- **For Windows 10** ``%userprofile%\Documents\Adobe\Adobe Substance 3D Painter``
+	- **For Linux** ``~/Documents/Adobe/Adobe Substance 3D Painter``
+	- **For MacOS** ``/Users/%username%/Documents/Adobe/Adobe Substance 3D Painter``
 
 > :information_source: After you have extracted the archive open up Substance Painter and enable both plugins python 
 > ![enable plugins](doc/_static/enable_plugins.jpg)

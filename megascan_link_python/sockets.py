@@ -94,7 +94,7 @@ class SocketThread(QtCore.QThread):
 						break
 					data =  self._connection.recv(16)
 					if data:
-						self._receivedData.write(data.decode("utf-8"))
+						self._receivedData.write(data.decode("utf-8","replace"))
 					else:
 						logger.Log('No more data from {}'.format(client_address), DEBUG)
 						break

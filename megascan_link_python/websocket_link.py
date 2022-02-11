@@ -25,6 +25,7 @@ class WebsocketLink(QtCore.QObject):
 			log.LoggerLink.Log("Sending data to JS plugin")
 			jsonData = {"data": data,
 						"settings": config.ConfigSettings.getAsDict()}
+			#log.LoggerLink.Log("Data {}".format(str(data)))
 			ws.send(json.dumps(jsonData))
 			ws.close()
 		except Exception as e:

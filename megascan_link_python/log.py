@@ -55,7 +55,7 @@ class LoggerLink(object):
 
 	@classmethod
 	def Log(cls, msg: str, logLevel=logging.INFO):
-		"""Helper function used to log a massage to a file or if specified in the config file
+		"""Helper function used to log a message to a file or if specified in the config file
 		with the `outputConsole` propriety also to the Python Editor output of Substance Designer
 
 		:param msg: the message to print
